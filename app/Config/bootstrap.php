@@ -118,3 +118,5 @@ CakePlugin::load('DebugKit');
 CakePlugin::load('Admin', array('bootstrap' => false, 'routes' => false));
 
 CakePlugin::load('UploadPack');
+
+CakePlugin::load('Website', array('bootstrap' => false, 'routes' => false));

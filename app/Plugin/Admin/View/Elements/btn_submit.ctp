@@ -1,0 +1,1 @@
+<?php echo $this->Form->end(array('label' => __('Send'), 'class' => 'btn btn-primary', 'div' => false)); ?>

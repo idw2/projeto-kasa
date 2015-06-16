@@ -28,7 +28,7 @@ class PropertiesController extends AdminAppController {
      */
     public function index() {
         $this->Property->recursive = 0;
-        $this->set('properties', $this->Paginator->paginate());
+        $this->set('properties', $this->Paginator->paginate());        
     }
 
     /**
@@ -56,7 +56,7 @@ class PropertiesController extends AdminAppController {
             $this->Property->create();
             if ($this->Property->save($this->request->data)) {
 
-                $property = $this->Property->find('first');
+                $property = $this->Property->find('first', array('order' => array('`Property`.`created` DESC')));
 
                 $details['Detail']['propertie_id'] = $property['Property']['id'];
                 $locations['Location']['propertie_id'] = $property['Property']['id'];
@@ -124,13 +124,20 @@ class PropertiesController extends AdminAppController {
         $this->Session->setFlash(__('* Status atualizado com sucesso!'));
         $this->redirect(array('action' => 'index'));
     }
+    
+    function featured($id, $status) {
+        $this->Property->id = $id;
+        $this->Property->saveField('featured', $status);
+        $this->Session->setFlash(__('* Destaque atualizado com sucesso!'));
+        $this->redirect(array('action' => 'index'));
+    }
 
     function details($id) {
 
         $detail_id = $this->Detail->find('first', array('conditions' => array("`Detail`.`propertie_id` = '{$id}' ")));
 
         if (!$this->Detail->exists($detail_id['Detail']['id'])) {
-            $this->redirect(array('action' => 'details_add', $id));
+            $this->redirect(array('action' => 'index'));
             return false;
         }
         if ($this->request->is(array('post', 'put'))) {

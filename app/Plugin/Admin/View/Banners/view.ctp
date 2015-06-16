@@ -1,40 +1,51 @@
-<div class="banners view">
-<h2><?php echo __('Banner'); ?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($banner['Banner']['id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Propertie'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($banner['Propertie']['name'], array('controller' => 'properties', 'action' => 'view', $banner['Propertie']['id'])); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created'); ?></dt>
-		<dd>
-			<?php echo h($banner['Banner']['created']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Modified'); ?></dt>
-		<dd>
-			<?php echo h($banner['Banner']['modified']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Photo File Name'); ?></dt>
-		<dd>
-			<?php echo h($banner['Banner']['photo_file_name']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Status'); ?></dt>
-		<dd>
-			<?php echo h($banner['Banner']['status']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Position'); ?></dt>
-		<dd>
-			<?php echo h($banner['Banner']['position']); ?>
-			&nbsp;
-		</dd>
-	</dl>
+<div class="col col-sm-12 col-lg-6">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo __('Banner'); ?></h3>
+        </div>
+        <div class="panel-body">
+            <?php echo $this->Upload->uploadImage($banner['Banner'], 'Banner.photo', array('style' => 'medium'), array('class' => 'img-thumbnail')); ?>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo __('Created'); ?></h3>
+        </div>
+        <div class="panel-body">
+            <?php echo h($banner['Banner']['created']); ?>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo __('Modified'); ?></h3>
+        </div>
+        <div class="panel-body">
+            <?php echo h($banner['Banner']['modified']); ?>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo __('Photo File Name'); ?></h3>
+        </div>
+        <div class="panel-body">
+            <?php echo h($banner['Banner']['photo_file_name']); ?>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo __('Status'); ?></h3>
+        </div>
+        <div class="panel-body">
+            <?php echo h($banner['Banner']['status']); ?>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo __('Position'); ?></h3>
+        </div>
+        <div class="panel-body">
+            <?php echo h($banner['Banner']['position']); ?>
+        </div>
+    </div>
 </div>

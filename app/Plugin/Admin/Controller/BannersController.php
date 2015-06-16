@@ -107,7 +107,7 @@ class BannersController extends AdminAppController {
         return $this->redirect(array('action' => 'index'));
     }
 
-    function status($id, $status) {
+    function status($id, $status) {        
         $this->Banner->id = $id;
         $this->Banner->saveField('status', $status);
         $this->Session->setFlash(__('* Status atualizado com sucesso!'));

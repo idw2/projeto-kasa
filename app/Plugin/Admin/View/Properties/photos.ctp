@@ -1,8 +1,10 @@
-<div class="photos index">
-    <h2><?php echo __('Photos'); ?></h2>
+<div class="col-sm-12">
+    <div class="col-lg-6">
+<div class="panel panel-default">
+    <div class="panel-heading"> <h3 class="panel-title"><?php echo __('Property'); ?> </h3> </div>
+  <div class="panel-body">
 
 
-    <h2><?php echo __('Property'); ?></h2>
     <dl>
         <dt><?php echo __('Id'); ?></dt>
         <dd>
@@ -40,9 +42,11 @@
             &nbsp;
         </dd>
     </dl>
-
-    <br/>
-    <div>
+ 
+   </div>
+      </div>
+    </div> 
+     <div class="col-sm-12"> 
         <form id="multipleDocs" class="form" enctype="multipart/form-data" method="post">
             <div class="form-group"> 
                 <h4>Selecione os documentos</h4>  
@@ -56,16 +60,13 @@
         <input type="hidden" name="base" id="base" value="<?php echo $this->request->base; ?>/admin"/>
     </div>
     <br/>
-
-
-
     <?php
     echo $this->Form->create('Photo', array('controller' => 'photos', 'action' => 'positions'));
     echo $this->Form->input('propertie_id', array('type' => 'hidden', 'value' => $propertie_id));
     ?>
 
 
-    <table cellpadding="0" cellspacing="0">
+    <table class="table table-bordered table-striped" cellpadding="0" cellspacing="0">
         <thead>
             <tr>
                 <th>#</th>
@@ -108,5 +109,5 @@
         </tbody>
     </table>
 
-    <?php echo $this->Form->end(__('Submit')); ?>
+    <?php echo $this->element("Admin.btn_submit"); ?>
 </div>

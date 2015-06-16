@@ -1,5 +1,8 @@
-<div class="properties view">
-    <h2><?php echo __('Property'); ?></h2>
+<div class="col-sm-12 col-lg-6">
+    
+<div class="panel panel-default">
+ <div class="panel-heading"> <h3 class="panel-title"><?php echo __('Property'); ?> </h3> </div>
+  <div class="panel-body">
     <dl>
         <dt><?php echo __('Id'); ?></dt>
         <dd>
@@ -37,4 +40,5 @@
             &nbsp;
         </dd>
     </dl>
+</div>
 </div>

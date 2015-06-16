@@ -1,80 +1,119 @@
-<div class="agents view">
-    <h2><?php echo __('Agent'); ?></h2>
-    <dl>
-        <dt><?php echo __('Id'); ?></dt>
-        <dd>
-            <?php echo h($agent['Agent']['id']); ?>
-            &nbsp;
-        </dd>
-        <dt><?php echo __('Created'); ?></dt>
-        <dd>
+<div class="col col-sm-8 col-lg-6">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo __('Created'); ?></h3>
+        </div>
+        <div class="panel-body">
             <?php echo h($agent['Agent']['created']); ?>
-            &nbsp;
-        </dd>
-        <dt><?php echo __('Modified'); ?></dt>
-        <dd>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo __('Modified'); ?></h3>
+        </div>
+        <div class="panel-body">
             <?php echo h($agent['Agent']['modified']); ?>
-            &nbsp;
-        </dd>
-        <dt><?php echo __('Photo File Name'); ?></dt>
-        <dd>
-            <?php echo h($agent['Agent']['photo_file_name']); ?>
-            &nbsp;
-        </dd>
-        <dt><?php echo __('Name'); ?></dt>
-        <dd>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo __('Photo'); ?></h3>
+        </div>
+        <div class="panel-body">
+            <?php echo $this->Upload->uploadImage($agent['Agent'], 'Agent.photo', array('style' => 'big'), array('class' => 'img-thumbnail')); ?>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo __('Name'); ?></h3>
+        </div>
+        <div class="panel-body">
             <?php echo h($agent['Agent']['name']); ?>
-            &nbsp;
-        </dd>
-        <dt><?php echo __('Email'); ?></dt>
-        <dd>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo __('E-mail'); ?></h3>
+        </div>
+        <div class="panel-body">
             <?php echo h($agent['Agent']['email']); ?>
-            &nbsp;
-        </dd>
-        <dt><?php echo __('Phone'); ?></dt>
-        <dd>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo __('Phone'); ?></h3>
+        </div>
+        <div class="panel-body">
             <?php echo h($agent['Agent']['phone']); ?>
-            &nbsp;
-        </dd>
-        <dt><?php echo __('Cell Phone'); ?></dt>
-        <dd>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo __('Cell Phone'); ?></h3>
+        </div>
+        <div class="panel-body">
             <?php echo h($agent['Agent']['cell_phone']); ?>
-            &nbsp;
-        </dd>
-        <dt><?php echo __('Fax'); ?></dt>
-        <dd>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo __('Fax'); ?></h3>
+        </div>
+        <div class="panel-body">
             <?php echo h($agent['Agent']['fax']); ?>
-            &nbsp;
-        </dd>
-        <dt><?php echo __('Description'); ?></dt>
-        <dd>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo __('Description'); ?></h3>
+        </div>
+        <div class="panel-body">
             <?php echo $agent['Agent']['description']; ?>
-            &nbsp;
-        </dd>
-        <dt><?php echo __('Google Plus'); ?></dt>
-        <dd>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo __('Google Plus'); ?></h3>
+        </div>
+        <div class="panel-body">
             <?php echo h($agent['Agent']['google_plus']); ?>
-            &nbsp;
-        </dd>
-        <dt><?php echo __('Facebook'); ?></dt>
-        <dd>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo __('Facebook'); ?></h3>
+        </div>
+        <div class="panel-body">
             <?php echo h($agent['Agent']['facebook']); ?>
-            &nbsp;
-        </dd>
-        <dt><?php echo __('Twitter'); ?></dt>
-        <dd>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo __('Twitter'); ?></h3>
+        </div>
+        <div class="panel-body">
             <?php echo h($agent['Agent']['twitter']); ?>
-            &nbsp;
-        </dd>
-        <dt><?php echo __('Instagram'); ?></dt>
-        <dd>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo __('Instagram'); ?></h3>
+        </div>
+        <div class="panel-body">
             <?php echo h($agent['Agent']['instagram']); ?>
-            &nbsp;
-        </dd>
-        <dt><?php echo __('Status'); ?></dt>
-        <dd>
-            <?php echo h($agent['Agent']['status']); ?>
-            &nbsp;
-        </dd>
-    </dl>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo __('Status'); ?></h3>
+        </div>
+        <div class="panel-body">
+            <?php if ($agent['Agent']['status']): ?>
+                Ativo
+            <?php else: ?>
+                Inativo
+            <?php endif; ?>
+        </div>
+    </div>
 </div>
