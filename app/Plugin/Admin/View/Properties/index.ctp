@@ -11,6 +11,7 @@
                     <th><?php echo $this->Paginator->sort('created'); ?></th>
                     <th><?php echo $this->Paginator->sort('modified'); ?></th>
                     <th><?php echo $this->Paginator->sort('name'); ?></th>
+                    <th><?php echo $this->Paginator->sort('type'); ?></th>
                     <th><?php echo $this->Paginator->sort('status'); ?></th>
                     <th><?php echo $this->Paginator->sort('featured'); ?></th>
                     <th class="actions"><?php echo __('Actions'); ?></th>
@@ -38,21 +39,22 @@
 
                     <tr>
                         <td><?php echo $this->Upload->uploadImage($property['Property'], 'Property.photo', array('style' => 'thumb'), array('class' => 'img-thumbnail')); ?>&nbsp;</td>
-                        <td><?php echo h($property['Property']['created']); ?>&nbsp;</td>
-                        <td><?php echo h($property['Property']['modified']); ?>&nbsp;</td>
+                        <td><?php echo $this->Lib->date_format(h($property['Property']['created'])); ?>&nbsp;</td>
+                        <td><?php echo $this->Lib->date_format(h($property['Property']['modified'])); ?>&nbsp;</td>
                         <td><?php echo h($property['Property']['name']); ?>&nbsp;</td>
+                        <td><?php echo h($property['Property']['type']); ?>&nbsp;</td>
                         <td class="text-center">
                             <?php if ($property['Property']['status']): ?>
-                                <?php echo $this->Form->postLink(__('<i class="fa fa-times"></i>'), array('action' => 'status', $property['Property']['id'], 0), array('class' => 'btn btn-xs btn-default', 'escape' => false, 'style' => 'font-size: 20px; width: 33px;'), __('Deseja despublicar este imóvel "%s"?', $property['Property']['name'])); ?>
+                                <?php echo $this->Form->postLink(__('<i class="fa fa-check"></i>'), array('action' => 'status', $property['Property']['id'], 0), array('class' => 'btn btn-xs btn-success', 'escape' => false, 'style' => 'font-size: 20px; width: 33px;'), __('Deseja despublicar este imóvel "%s"?', $property['Property']['name'])); ?>
                             <?php else: ?>
-                                <?php echo $this->Form->postLink(__('<i class="fa fa-check"></i>'), array('action' => 'status', $property['Property']['id'], 1), array('class' => 'btn btn-xs btn-default','escape' => false, 'style' => 'font-size: 20px; width: 33px;'),  __('Deseja publicar este imóvel "%s"?', $property['Property']['name'])); ?>
+                                <?php echo $this->Form->postLink(__('<i class="fa fa-times"></i>'), array('action' => 'status', $property['Property']['id'], 1), array('class' => 'btn btn-xs btn-default','escape' => false, 'style' => 'font-size: 20px; width: 33px;'),  __('Deseja publicar este imóvel "%s"?', $property['Property']['name'])); ?>
                             <?php endif; ?>
                         </td>
                         <td class="text-center">
                             <?php if ($property['Property']['featured']): ?>
-                                <?php echo $this->Form->postLink(__('<i class="fa fa-times"></i>'), array('action' => 'featured', $property['Property']['id'], 0), array('class' => 'btn btn-xs btn-default', 'escape' => false, 'style' => 'font-size: 20px; width: 33px;'), __('Deseja tirar destaque este imóvel "%s"?', $property['Property']['name'])); ?>
+                                <?php echo $this->Form->postLink(__('<i class="fa fa-check"></i>'), array('action' => 'featured', $property['Property']['id'], 0), array('class' => 'btn btn-xs btn-success', 'escape' => false, 'style' => 'font-size: 20px; width: 33px;'), __('Deseja tirar destaque este imóvel "%s"?', $property['Property']['name'])); ?>
                             <?php else: ?>
-                                <?php echo $this->Form->postLink(__('<i class="fa fa-check"></i>'), array('action' => 'featured', $property['Property']['id'], 1), array('class' => 'btn btn-xs btn-default','escape' => false, 'style' => 'font-size: 20px; width: 33px;'),  __('Deseja destacar este imóvel "%s"?', $property['Property']['name'])); ?>
+                                <?php echo $this->Form->postLink(__('<i class="fa fa-times"></i>'), array('action' => 'featured', $property['Property']['id'], 1), array('class' => 'btn btn-xs btn-default','escape' => false, 'style' => 'font-size: 20px; width: 33px;'),  __('Deseja destacar este imóvel "%s"?', $property['Property']['name'])); ?>
                             <?php endif; ?>
                         </td>
                         <td class="text-center">

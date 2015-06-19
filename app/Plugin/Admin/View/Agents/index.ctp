@@ -43,8 +43,8 @@
                     ?>
                     <tr>
                         <td><?php echo $this->Upload->uploadImage($agent['Agent'], 'Agent.photo', array('style' => 'thumb'), array('class' => 'img-thumbnail')); ?>&nbsp;</td>
-                        <td><?php echo h($agent['Agent']['created']); ?>&nbsp;</td>
-                        <td><?php echo h($agent['Agent']['modified']); ?>&nbsp;</td>
+                        <td><?php echo $this->Lib->date_format(h($agent['Agent']['created'])); ?>&nbsp;</td>
+                        <td><?php echo $this->Lib->date_format(h($agent['Agent']['modified'])); ?>&nbsp;</td>
                         <td><?php echo h($agent['Agent']['name']); ?>&nbsp;</td>
                         <td><?php echo h($agent['Agent']['email']); ?>&nbsp;</td>
                         <td><?php echo h($agent['Agent']['phone']); ?>&nbsp;</td>
@@ -52,9 +52,9 @@
                         <td><?php echo h($agent['Agent']['fax']); ?>&nbsp;</td>
                         <td  class="text-center">
                             <?php if ($agent['Agent']['status']): ?>
-                                <?php echo $this->Form->postLink(__('<i class="fa fa-times"></i>'), array('action' => 'status', $agent['Agent']['id'], 0), array('class' => 'btn btn-xs btn-default', 'escape' => false, 'style' => 'font-size: 20px; width: 33px;'), __('Deseja despublicar agente imóvel "%s"?', $agent['Agent']['name'])); ?>
+                                <?php echo $this->Form->postLink(__('<i class="fa fa-check"></i>'), array('action' => 'status', $agent['Agent']['id'], 0), array('class' => 'btn btn-xs btn-success', 'escape' => false, 'style' => 'font-size: 20px; width: 33px;'), __('Deseja despublicar agente imóvel "%s"?', $agent['Agent']['name'])); ?>
                             <?php else: ?>
-                                <?php echo $this->Form->postLink(__('<i class="fa fa-check"></i>'), array('action' => 'status', $agent['Agent']['id'], 1), array('class' => 'btn btn-xs btn-default', 'escape' => false, 'style' => 'font-size: 20px; width: 33px;'), __('Deseja publicar este agente "%s"?', $agent['Agent']['name'])); ?>
+                                <?php echo $this->Form->postLink(__('<i class="fa fa-times"></i>'), array('action' => 'status', $agent['Agent']['id'], 1), array('class' => 'btn btn-xs btn-default', 'escape' => false, 'style' => 'font-size: 20px; width: 33px;'), __('Deseja publicar este agente "%s"?', $agent['Agent']['name'])); ?>
                             <?php endif; ?>
                         </td>
                         <td class="text-center">

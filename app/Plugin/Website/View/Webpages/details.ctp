@@ -12,75 +12,85 @@
 
 <?php echo $this->element("Website.search"); ?>
 
-<div class="content-section">
+<div class="content-section property-details-page">
     <div class="container">
         <div class="row">
             <div class="col-md-8 page-content">
                 <div class="inner-wrapper">
                     <div class="property-images-slider">
                         <div id="details-slider" class="flexslider">
-                            <a href="<?php echo $this->base ?>/website/website/ptype/building/index.html" class="fa fa-building-o property-type-icon"></a>
-                            <a href="#" class="yellow-btn" style="position: absolute; bottom: 25px; left: 25px;">$20,000</a>
-                            <a href="<?php echo $this->base ?>/website/website/status/for-rent/index.html" class="status">For Rent</a>
 
-                            <div class="flex-viewport" style="overflow: hidden; position: relative;"><ul class="slides" style="width: 1200%; -webkit-transition-duration: 0s; transition-duration: 0s; -webkit-transform: translate3d(0px, 0px, 0px); transform: translate3d(0px, 0px, 0px);">
-                                    <li class="flex-active-slide" style="width: 770px; float: left; display: block;">
-                                        <div class="image-wrapper">
-                                            <img src="<?php echo $this->base ?>/website/website/wp-content/uploads/2014/06/39_slide-n1-770x481.png" alt="gallery" draggable="false">
-                                        </div>
-                                    </li>
-                                    <li style="width: 770px; float: left; display: block;">
-                                        <div class="image-wrapper">
-                                            <img src="<?php echo $this->base ?>/website/website/wp-content/uploads/2014/06/slide-02-770x481.jpg" alt="gallery" draggable="false">
-                                        </div>
-                                    </li>
-                                    <li style="width: 770px; float: left; display: block;">
-                                        <div class="image-wrapper">
-                                            <img src="<?php echo $this->base ?>/website/website/wp-content/uploads/2014/06/slide-03-770x481.jpg" alt="gallery" draggable="false">
-                                        </div>
-                                    </li>
-                                    <li style="width: 770px; float: left; display: block;">
-                                        <div class="image-wrapper">
-                                            <img src="<?php echo $this->base ?>/website/website/wp-content/uploads/2014/06/39_slide-n1-770x481.png" alt="gallery" draggable="false">
-                                        </div>
-                                    </li>
-                                    <li style="width: 770px; float: left; display: block;">
-                                        <div class="image-wrapper">
-                                            <img src="<?php echo $this->base ?>/website/website/wp-content/uploads/2014/06/slide-02-770x481.jpg" alt="gallery" draggable="false">
-                                        </div>
-                                    </li>
-                                    <li style="width: 770px; float: left; display: block;">
-                                        <div class="image-wrapper">
-                                            <img src="<?php echo $this->base ?>/website/website/wp-content/uploads/2014/06/slide-01-770x481.jpg" alt="gallery" draggable="false">
-                                        </div>
-                                    </li>
-                                </ul></div></div>
+                            <a href="#" onclick="javascript: return false;" class="fa fa-building-o property-type-icon"></a>
+                            <a href="#" onclick="javascript: return false;" class="yellow-btn">$20,000</a>
+                            <a href="#" onclick="javascript: return false;" class="status">For Rent</a>
+
+                            <div class="flex-viewport" style="overflow: hidden; position: relative;">
+                                <ul class="slides" style="width: 1200%; -webkit-transition-duration: 0s; transition-duration: 0s; -webkit-transform: translate3d(0px, 0px, 0px); transform: translate3d(0px, 0px, 0px);">
+
+                                    <?php $i = 0; ?>
+                                    <?php foreach ($photos as $photo): ?>
+
+                                        <li <?php
+                                        if ($i == 0) {
+                                            echo 'class="flex-active-slide"';
+                                        }
+                                        ?> style="width: 770px; float: left; display: block;">
+                                            <div class="image-wrapper">
+
+                                                <?php
+                                                $extensao = strtolower(pathinfo($photo['Photo']['photo_file_name'], PATHINFO_EXTENSION));
+                                                $_image_name = explode(".{$extensao}", $photo['Photo']['photo_file_name']);
+                                                ?>
+                                                <img src="<?php echo $this->Html->url("/files/photos/" . $photo['Photo']['id'] . "/" . $_image_name[0] . "_big." . $extensao); ?>" alt="<?php echo $photo['Photo']['photo_file_name']; ?>" alt="gallery" draggable="false">
+                                            </div>
+                                        </li>
+
+                                        <?php $i++; ?>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+                        </div>
                         <div id="details-carousel" class="flexslider">
 
-                            <div class="flex-viewport" style="overflow: hidden; position: relative;"><ul class="slides" style="width: 1200%; -webkit-transition-duration: 0s; transition-duration: 0s; -webkit-transform: translate3d(0px, 0px, 0px); transform: translate3d(0px, 0px, 0px);">
+                            <div class="flex-viewport" style="overflow: hidden; position: relative;">
+                                <ul class="slides" style="width: 1200%; -webkit-transition-duration: 0s; transition-duration: 0s; -webkit-transform: translate3d(0px, 0px, 0px); transform: translate3d(0px, 0px, 0px);">
 
-                                    <li class="flex-active-slide" style="width: 142px; float: left; display: block;"><img alt="gallery" src="<?php echo $this->base ?>/website/website/wp-content/uploads/2014/06/39_slide-n1-124x76.png" draggable="false"></li>
+                                    <?php $i = 0; ?>
+                                    <?php foreach ($photos as $photo): ?>
 
-                                    <li style="width: 142px; float: left; display: block;"><img alt="gallery" src="<?php echo $this->base ?>/website/website/wp-content/uploads/2014/06/slide-02-124x76.jpg" draggable="false"></li>
+                                        <?php
+                                        $extensao = strtolower(pathinfo($photo['Photo']['photo_file_name'], PATHINFO_EXTENSION));
+                                        $_image_name = explode(".{$extensao}", $photo['Photo']['photo_file_name']);
+                                        ?>
 
-                                    <li style="width: 142px; float: left; display: block;"><img alt="gallery" src="<?php echo $this->base ?>/website/website/wp-content/uploads/2014/06/slide-03-124x76.jpg" draggable="false"></li>
+                                        <li class="flex-active-slide" style="width: 142px; float: left; display: block;">
+                                            <img alt="gallery" src="<?php echo $this->Html->url("/files/photos/" . $photo['Photo']['id'] . "/" . $_image_name[0] . "_thumb." . $extensao); ?>" draggable="false">
+                                        </li>
 
-                                    <li style="width: 142px; float: left; display: block;"><img alt="gallery" src="<?php echo $this->base ?>/website/website/wp-content/uploads/2014/06/39_slide-n1-124x76.png" draggable="false"></li>
+                                        <?php $i++; ?>
+                                    <?php endforeach; ?>
 
-                                    <li style="width: 142px; float: left; display: block;"><img alt="gallery" src="<?php echo $this->base ?>/website/website/wp-content/uploads/2014/06/slide-02-124x76.jpg" draggable="false"></li>
-
-                                    <li style="width: 142px; float: left; display: block;"><img alt="gallery" src="<?php echo $this->base ?>/website/website/wp-content/uploads/2014/06/slide-01-124x76.jpg" draggable="false"></li>
-                                </ul></div><ul class="flex-direction-nav"><li><a class="flex-prev flex-disabled" href="#" tabindex="-1"></a></li><li><a class="flex-next" href="#"></a></li></ul></div>
+                                </ul>
+                            </div>
+                            <ul class="flex-direction-nav">
+                                <li>
+                                    <a class="flex-prev flex-disabled" href="#" tabindex="-1"></a>
+                                </li>
+                                <li>
+                                    <a class="flex-next" href="#"></a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="property-desc">					
-                        <h3>2211 Summer Ridge Dr</h3>
+                        <h3><?php echo $property['Property']['name']; ?></h3>
                         <ul class="slide-item-features item-features">
-                            <li><span class="fa fa-arrows-alt"></span>400 Sq Ft</li>
-                            <li><span class="fa fa-male"></span>2  Bathrooms</li>
-                            <li><span class="fa fa-inbox"></span>5 Bedrooms</li>
+                            <li><span class="fa fa-arrows-alt"></span><?php echo $property['Detail']['area']; ?> Sq Ft</li>
+                            <li><span class="fa fa-male"></span><?php echo $property['Detail']['bathrooms']; ?>  Bathrooms</li>
+                            <li><span class="fa fa-inbox"></span><?php echo $property['Detail']['bedrooms']; ?> Bedrooms</li>
+                            <li><span class="fa fa-truck"></span><?php echo $property['Detail']['garages']; ?> Garages</li>
                         </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquet est nec augue malesuada dictum. Nullam elementum dictum libero quis tristique. Aenean dictum, elit non rutrum aliquam, risus lacus interdum quam, eu lacinia diam dui ac urna. Nunc leo mauris, ornare id lorem eu, feugiat sodales eros. Cras tempus ac purus imperdiet commodo. Cras non turpis eget dolor fermentum accumsan. Donec vitae ultricies urna, ac porttitor nunc. Curabitur fermentum fringilla commodo. Praesent id mattis est.</p>
-                        <p>Curabitur laoreet luctus leo, sit amet rhoncus sapien luctus ut. Morbi risus odio, tempor sed felis porta, euismod vehicula purus. Praesent dapibus id massa nec auctor. Vivamus id ligula vitae diam cursus condimentum sit amet non tortor. Integer eget diam vitae nibh porttitor egestas nec nec mauris. Nulla id ante ut felis fringilla volutpat quis at diam. Nullam porta auctor lacus, non aliquet velit dignissim gravida. Ut et vehicula urna. Integer tempus eros nec blandit porta. Ut a nibh in nunc consequat congue ac ut elit. Quisque sed nibh ut ipsum pharetra dapibus. Fusce interdum ullamcorper vulputate. Integer tincidunt quam sit amet tellus venenatis, sed aliquet nibh aliquam. Sed iaculis, felis ac sagittis ullamcorper, nulla nulla accumsan lorem, et egestas augue urna eu sapien. Cras facilisis ante sit amet felis ornare, a pulvinar leo facilisis. Nullam lacinia ornare hendrerit.</p>
+                        <?php echo $property['Property']['description']; ?>
                         <div class="additional-features">
                             <h3>Additional Features</h3>
                             <ul class="features">
@@ -105,30 +115,77 @@
                         </script>
                     </div>
                 </div>
-                <div class="contact-form-wrapper comment-form-wrapper">
-                    <div class="inner-wrapper">
+
+            </div>
+            <div class="col-md-4 blog-sidebar">
+                <div id="swh-widget-agent-3" class="sidebar-widget author-profile"><h4 class="widget-title">Listed By</h4>			<div class="image-box">
+
+                        <?php
+                        $extensao = strtolower(pathinfo($property['Agent']['photo_file_name'], PATHINFO_EXTENSION));
+                        $_image_name = explode(".{$extensao}", $property['Agent']['photo_file_name']);
+                        ?>
+                        <img width="280" height="266" src="<?php echo $this->Html->url("/files/agents/" . $property['Agent']['id'] . "/" . $_image_name[0] . "_small." . $extensao); ?>" class="attachment-agents-thumbnail-320-303 wp-post-image" alt="13_agent-photo5">									
+                        
+                        <ul class="social-icons">
+                            <?php if ($property['Agent']['google_plus'] != ""): ?>
+                                <li><a href="<?php echo $property['Agent']['google_plus']; ?>" class="fa fa-google-plus"></a></li>
+                            <?php endif; ?>
+                            <?php if ($property['Agent']['facebook'] != ""): ?>
+                                <li><a href="<?php echo $property['Agent']['facebook']; ?>" class="fa fa-facebook"></a></li>
+                            <?php endif; ?>
+                            <?php if ($property['Agent']['twitter'] != ""): ?>
+                                <li><a href="<?php echo $property['Agent']['twitter']; ?>" class="fa fa-twitter"></a></li>
+                            <?php endif; ?>
+                            <?php if ($property['Agent']['instagram'] != ""): ?>
+                                <li><a href="<?php echo $property['Agent']['instagram']; ?>" class="fa fa-instagram"></a></li>
+                            <?php endif; ?>
+                        </ul>
+                    </div>
+                    <div class="desc-box">
+                        <h4><?php echo $property['Agent']['name']; ?></h4>
+                        <p class="person-number">
+                            <i class="fa fa-phone"></i> <?php echo $property['Agent']['phone']; ?>												
+                        </p>
+                        <p class="person-email">
+                            <i class="fa fa-mobile"></i> <?php echo $property['Agent']['cell_phone']; ?>												
+                        </p>
+                        <p class="person-email">
+                            <i class="fa fa-envelope"></i> <?php echo $property['Agent']['email']; ?>				
+                        </p>
+                        <p class="person-fax">
+                            <i class="fa fa-print"></i> <?php echo $property['Agent']['fax']; ?>				
+                        </p>
+                        <a href="<?php echo $this->base ?>/agent_details/<?php echo $property['Agent']['url']; ?>" class="gray-btn">View full profile</a>
+                    </div>		
+                </div>
+
+
+                <div class="contact-form-wrapper comment-form-wrapper sidebar-widget author-profile">
+                    <div>
                         <h4 class="box-title">Leave a comment</h4>
 
                         <div id="respond" class="comment-respond">
                             <h3 id="reply-title" class="comment-reply-title">Add your comment <small><a rel="nofollow" id="cancel-comment-reply-link" href="index.html#respond" style="display:none;">Cancel Reply</a></small></h3>
                             <form action="http://sweethome.marstheme.com/wp-comments-post.php" method="post" id="commentform" class="contact-form" novalidate="">
                                 <p class="comment-notes">Your email address will not be published.</p>							
-                                <div class="contact-form-left">
-                                    <span><i class="fa fa-user"></i></span><input type="text" id="author" name="author" placeholder="Name">		
+                                <div class="row">
+                                    <div class="col-sm-12">
+
+                                        <input type="text" id="author" name="author" placeholder="Name">		
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <input type="text" id="email" name="email" placeholder="e-mail"></div>
+
+                                    <div class="col-sm-12">
+                                        <input type="text" id="url" name="url" placeholder="website"></div>
 
 
-                                    <span><i class="fa fa-envelope-o"></i></span><input type="text" id="email" name="email" placeholder="e-mail">
-
-
-                                    <span><i class="fa fa-link"></i></span><input type="text" id="url" name="url" placeholder="website">
+                                    <div class="col-sm-12">
+                                        <textarea id="comment" name="comment" placeholder="Message"></textarea>
+                                        <input type="submit" value="Send message">
+                                    </div>				                      
                                 </div>
-
-
-                                <div class="contact-form-right">
-                                    <textarea id="comment" name="comment" placeholder="Message"></textarea>
-                                    <input type="submit" value="Send message">
-                                </div>				                      
-
                                 <p class="form-submit"><input name="submit" type="submit" id="submit" class="" value="Send message"> <input type="hidden" name="comment_post_ID" value="112" id="comment_post_ID">
                                     <input type="hidden" name="comment_parent" id="comment_parent" value="0">
                                 </p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="093d7beeb1"></p><p class="comment-subscription-form"><input type="checkbox" name="subscribe_comments" id="subscribe_comments" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;"> <label class="subscribe-label" id="subscribe-label" for="subscribe_comments">Notify me of follow-up comments by email.</label></p><p class="comment-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;"> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog">Notify me of new posts by email.</label></p><p style="display: none;"></p>					<input type="hidden" id="ak_js" name="ak_js" value="1434482549136"></form>
@@ -137,47 +194,10 @@
 
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4 blog-sidebar">
-                <div id="swh-widget-agent-3" class="sidebar-widget author-profile"><h4 class="widget-title">Listed By</h4>			<div class="image-box">
-                        <img width="280" height="266" src="<?php echo $this->base ?>/website/website/wp-content/uploads/2014/06/13_agent-photo5.png" class="attachment-agents-thumbnail-320-303 wp-post-image" alt="13_agent-photo5">									<ul class="social-icons">
-                            <li><a href="#" class="fa fa-google-plus"></a></li>
-                            <li><a href="#" class="fa fa-facebook"></a></li>
-                            <li><a href="#" class="fa fa-twitter"></a></li>
-                            <li><a href="#" class="fa fa-instagram"></a></li>
-                        </ul>
-                    </div>
-                    <div class="desc-box">
-                        <h4>Elton Smith</h4>
-                        <p class="person-number">
-                            <i class="fa fa-phone"></i> 900 123 456 789												</p><p class="person-email">
-                            <i class="fa fa-envelope"></i> elton@sweethome.com				</p>
-                        <p class="person-fax">
-                            <i class="fa fa-print"></i> 900 123 456 789				</p>
-                        <a href="<?php echo $this->base ?>/website/website/agent/elton-smith/index.html" class="gray-btn">View full profile</a>
-                    </div>		
-                </div><div id="custom_cf7-2" class="sidebar-widget widget_custom_cf7">    	<div class="clearfix">
-                        <div class="wpcf7" id="wpcf7-f132-p112-o1" lang="en-US" dir="ltr">
-                            <div class="screen-reader-response"></div>
-                            <form name="" action="http://sweethome.marstheme.com/property/2211-summer-ridge-dr-3/#wpcf7-f132-p112-o1" method="post" class="wpcf7-form" novalidate="novalidate">
-                                <div style="display: none;">
-                                    <input type="hidden" name="_wpcf7" value="132">
-                                    <input type="hidden" name="_wpcf7_version" value="4.1.1">
-                                    <input type="hidden" name="_wpcf7_locale" value="en_US">
-                                    <input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f132-p112-o1">
-                                    <input type="hidden" name="_wpnonce" value="0d65219be5">
-                                </div>
-                                <p>Your Name (required)<br>
-                                    <span class="wpcf7-form-control-wrap your-name"><input type="text" name="your-name" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span> </p>
-                                <p>Your Email (required)<br>
-                                    <span class="wpcf7-form-control-wrap your-email"><input type="email" name="your-email" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false"></span> </p>
-                                <p>Subject<br>
-                                    <span class="wpcf7-form-control-wrap your-subject"><input type="text" name="your-subject" value="" size="40" class="wpcf7-form-control wpcf7-text" aria-invalid="false"></span> </p>
-                                <p>Your Message<br>
-                                    <span class="wpcf7-form-control-wrap your-message"><textarea name="your-message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea" aria-invalid="false"></textarea></span> </p>
-                                <p><input type="submit" value="Send" class="wpcf7-form-control wpcf7-submit"><img class="ajax-loader" src="http://sweethome.marstheme.com/wp-content/plugins/contact-form-7/images/ajax-loader.gif" alt="Sending ..." style="visibility: hidden;"></p>
-                                <div class="wpcf7-response-output wpcf7-display-none"></div></form></div>    	</div>
-                </div><div id="swh-widget-property-4" class="sidebar-widget similar-listings-widget"><h4 class="widget-title">Similar Listings</h4>			<ul class="similar-listings">
+
+
+
+                <div id="swh-widget-property-4" class="sidebar-widget similar-listings-widget"><h4 class="widget-title">Similar Listings</h4>			<ul class="similar-listings">
                         <li class="tab-content-item">
                             <div class="pull-left thumb">
                                 <a href="<?php echo $this->base ?>/website/website/1141-14th-street-south-2/index.html"><img width="150" height="150" src="<?php echo $this->base ?>/website/website/wp-content/uploads/2014/06/slide-03-150x150.jpg" class="property-thumbnail-50-50 wp-post-image" alt="slide-03"></a>
@@ -200,12 +220,9 @@
                             <h5>$500,000</h5>
                         </li>
                     </ul>
-                </div><div id="text-3" class="sidebar-widget widget_text"><h4 class="widget-title">Text Widget</h4>			<div class="textwidget"><p>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum</p>
-                        <p>auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit</p>
-                    </div>
-                </div>	</div>			</div>
+                </div>
+
+
+            </div>			</div>
     </div>
 </div>
-<style>
-
-</style>

@@ -29,8 +29,11 @@
 	Router::connect('/listings', array('controller' => 'webpages', 'action' => 'listings', 'plugin' => 'website'));
 	Router::connect('/contact_us', array('controller' => 'webpages', 'action' => 'contact_us', 'plugin' => 'website'));
 	Router::connect('/details', array('controller' => 'webpages', 'action' => 'details', 'plugin' => 'website'));
+	Router::connect('/details/*', array('controller' => 'webpages', 'action' => 'details', 'plugin' => 'website'));
 	Router::connect('/agents', array('controller' => 'webpages', 'action' => 'agents', 'plugin' => 'website'));
 	Router::connect('/agent_details', array('controller' => 'webpages', 'action' => 'agent_details', 'plugin' => 'website'));
+	Router::connect('/agent_details/*', array('controller' => 'webpages', 'action' => 'agent_details', 'plugin' => 'website'));
+	Router::connect('/admin', array('controller' => 'users', 'action' => 'login', 'plugin' => 'admin'));
 /**
  * ...and connect the rest of 'Pages' controller's URLs.
  */

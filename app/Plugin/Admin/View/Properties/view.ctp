@@ -11,12 +11,12 @@
         </dd>
         <dt><?php echo __('Created'); ?></dt>
         <dd>
-            <?php echo h($property['Property']['created']); ?>
+            <?php echo $this->Lib->date_format(h($property['Property']['created'])); ?>
             &nbsp;
         </dd>
         <dt><?php echo __('Modified'); ?></dt>
         <dd>
-            <?php echo h($property['Property']['modified']); ?>
+            <?php echo $this->Lib->date_format(h($property['Property']['modified'])); ?>
             &nbsp;
         </dd>
         <dt><?php echo __('Name'); ?></dt>
@@ -26,7 +26,7 @@
         </dd>
         <dt><?php echo __('Description'); ?></dt>
         <dd>
-            <?php echo h($property['Property']['description']); ?>
+            <?php echo $property['Property']['description']; ?>
             &nbsp;
         </dd>
         <dt><?php echo __('Photo File Name'); ?></dt>

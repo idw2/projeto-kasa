@@ -7,7 +7,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">SB Admin</a>
+        <a class="navbar-brand" href="index.html"><?php echo $this->Session->read('Auth.User.email'); ?></a>
     </div>
     <!-- Top Menu Items -->
     <ul class="nav navbar-right top-nav">
@@ -91,8 +91,9 @@
                 </li>
             </ul>
         </li>
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+        <li class="dropdown">          
+            
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $this->Session->read('Auth.User.name'); ?> <b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li>
                     <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -105,7 +106,7 @@
                 </li>
                 <li class="divider"></li>
                 <li>
-                    <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                    <?php echo $this->Html->link('<i class="fa fa-fw fa-power-off"></i> Log Out', array('controller' => 'users', 'action' => 'logout', 'plugin' => 'admin'), array('escape' => false)); ?>
                 </li>
             </ul>
         </li>
@@ -122,6 +123,9 @@
             </li>
             <li>
                 <?php echo $this->Html->link(__('<i class="fa fa-fw fa-university"></i> List Properties'), array('controller' => 'properties', 'action' => 'index'), array('escape' => false)); ?>
+            </li>
+            <li>
+                <?php echo $this->Html->link(__('<i class="fa fa-fw fa-th"></i> List Structures'), array('controller' => 'structures', 'action' => 'index'), array('escape' => false)); ?>
             </li>
         </ul>
 

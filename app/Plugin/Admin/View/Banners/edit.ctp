@@ -14,6 +14,23 @@
     <?php
     echo $this->Form->input('Banner.photo', array('type' => 'file'));
     echo $this->Form->input('status', array('type' => 'hidden'));
+
+    
+    
+    echo $this->Form->input('description', array('class' => 'ckeditor'));
+    
+    $options = array();
+    foreach ($properties as $propertie) {
+        $options[$propertie['Property']['id']] = $propertie['Property']['name'];
+    }
+    
+    echo $this->Form->input('propertie_id', array('type' => 'select',
+        'class' => 'form-control',
+        'placeholder' => "Properties",
+        'empty' => "(choose properties)",
+        'options' => $options,
+        'required'
+    ));
     ?>
     <?php echo $this->element("Admin.btn_submit"); ?>
 </div>

@@ -1,19 +1,52 @@
 <div class="col-sm-12 col-lg-6">
-    <?php echo $this->Form->create('Property', array('type' => 'file', 'inputDefaults' => array(
+    <?php
+    echo $this->Form->create('Property', array('type' => 'file', 'inputDefaults' => array(
             'div' => array('class' => 'form-group')
     )));
     ?>
-   
+
     <fieldset>
         <legend><?php echo __('Edit Property'); ?></legend>
         <?php
         echo $this->Form->input('id');
-        echo $this->Upload->uploadImage($this->request->data['Property'], 'Property.photo', array('style' => 'small'));
+        echo $this->Upload->uploadImage($this->request->data['Property'], 'Property.photo', array('style' => 'small'), array('class' => 'img-thumbnail'));
+        ?>
+        <br/>
+        <br/>
+        <?php
+        
         echo $this->Form->input('Property.photo', array('type' => 'file'));
         echo $this->Form->input('name', array('class' => 'form-control'));
+
+        echo $this->Form->input('type', array('type' => 'select',
+            'class' => 'form-control',
+            'placeholder' => "Type",
+            'empty' => "(choose type properties)",
+            'options' => array(
+                'Apartment' => 'Apartment',
+                'House' => 'House'
+            ),
+            'required'
+        ));
+        
+         $options = array();
+        foreach ($agents as $agent) {
+            $options[$agent['Agent']['id']] = $agent['Agent']['name'];
+        }
+
+        echo $this->Form->input('agent_id', array('type' => 'select',
+            'class' => 'form-control',
+            'placeholder' => "Agents",
+            'empty' => "(choose agents)",
+            'options' => $options,
+            'required'
+        ));
+
         echo $this->Form->input('description', array('class' => 'ckeditor'));
         echo $this->Form->input('status', array('type' => 'hidden'));
+        echo $this->Form->input('url', array('type' => 'hidden'));
+        
         ?>
     </fieldset>
-      <?php echo $this->element("Admin.btn_submit"); ?>
+<?php echo $this->element("Admin.btn_submit"); ?>
 </div>

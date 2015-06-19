@@ -22,6 +22,7 @@
     echo $this->Form->input('twitter', array('class' => 'form-control'));
     echo $this->Form->input('instagram', array('class' => 'form-control'));
     echo $this->Form->input('status', array('type' => 'hidden'));
+    echo $this->Form->input('url', array('type' => 'hidden'));
     ?>
     <?php echo $this->element("Admin.btn_submit"); ?>
 </div>

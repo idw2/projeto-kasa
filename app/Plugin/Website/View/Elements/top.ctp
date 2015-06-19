@@ -11,7 +11,7 @@
                 </li>			
             </ul>
             <div id="contact-box" class='pull-right'>
-                <a href="mailto:info@marstheme.com" class='fa fa-envelope'><span>info@marstheme.com</span></a>
+                <a href="mailto:info@marstheme.com" class='fa fa-envelope'><span>info@realtykaza.com</span></a>
                 <a href="#" class='fa fa-phone'><span> +399 (500) 321 9548</span></a>
             </div>
         </div>

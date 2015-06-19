@@ -14,9 +14,10 @@
         <!-- Custom CSS -->
         <?php echo $this->Html->css('Admin./startbootstrap-sb-admin-1.0.3/css/sb-admin'); ?>
 
-        <!-- Morris Charts CSS -->
-        <?php echo $this->Html->css('Admin./startbootstrap-sb-admin-1.0.3/css/plugins/morris'); ?>
+        <!-- CSS -->
+        <?php echo $this->Html->css('/app/webroot/css/uploadfile.css'); ?>
 
+        
         <!-- Custom Fonts -->
         <?php echo $this->Html->css('Admin./startbootstrap-sb-admin-1.0.3/font-awesome/css/font-awesome.min'); ?>
 

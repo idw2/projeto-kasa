@@ -17,7 +17,7 @@ class AgentsController extends AdminAppController {
      */
     var $name = 'Agents';
     var $uses = array('Agent');
-    var $helpers = array('Form', 'UploadPack.Upload');
+    var $helpers = array('Form', 'UploadPack.Upload', 'Lib');
     public $components = array('Session', 'Paginator');
 
     /**
@@ -52,6 +52,26 @@ class AgentsController extends AdminAppController {
      */
     public function add() {
         if ($this->request->is('post')) {
+
+            $view = new View($this);
+            $lib = $view->loadHelper('Lib');
+
+            $url_amigavel = $lib->url_amigavel($this->data['Agent']['name']);
+            $existe_url_amigavel = $this->Agent->find('first', array('conditions' => array("`Agent`.`url` = '{$url_amigavel}'")));
+
+            $loop = true;
+
+            $i = 1;
+            while ($loop) {
+                if (sizeof($existe_url_amigavel)) {
+                    $url_amigavel = "{$url_amigavel}-{$i}";
+                } else {
+                    $loop = false;
+                    $this->request->data['Agent']['url'] = $url_amigavel;
+                }
+                $i++;
+            }
+
             $this->Agent->create();
             if ($this->Agent->save($this->request->data)) {
                 $this->Session->setFlash(__('The agent has been saved.'));
@@ -74,6 +94,26 @@ class AgentsController extends AdminAppController {
             throw new NotFoundException(__('Invalid agent'));
         }
         if ($this->request->is(array('post', 'put'))) {
+
+            $view = new View($this);
+            $lib = $view->loadHelper('Lib');
+
+            $url_amigavel = $lib->url_amigavel($this->data['Agent']['name']);
+            $existe_url_amigavel = $this->Agent->find('first', array('conditions' => array("`Agent`.`url` = '{$url_amigavel}'")));
+
+            $loop = true;
+
+            $i = 1;
+            while ($loop) {
+                if (sizeof($existe_url_amigavel) > 1) {
+                    $url_amigavel = "{$url_amigavel}-{$i}";
+                } else {
+                    $loop = false;
+                    $this->request->data['Agent']['url'] = $url_amigavel;
+                }
+                $i++;
+            }
+
             if ($this->Agent->save($this->request->data)) {
                 $this->Session->setFlash(__('The agent has been saved.'));
                 return $this->redirect(array('action' => 'index'));

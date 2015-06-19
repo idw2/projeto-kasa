@@ -17,13 +17,17 @@
         <link rel="pingback" href="xmlrpc.php">
         <!-- Set Viewport-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+        <meta http-equiv="content-type" contop-tent="text/html; charset=UTF-8"/>
+
+
         <!--[if IE]>
                 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
-        <title>SweetHome | Just another WordPress siteSweetHome | Just another WordPress site</title>
-        <script>var swh_template_uri = "<?php echo $this->base ?>/website/website/wp-content/themes/sweethome/index.html";</script>
-        <script>var swh_ajax_uri = "<?php echo $this->base ?>/website/website/wp-admin/admin-ajax.html";</script>
+        <title>Kaza - International Realty</title>
+        <script>var swh_template_uri = "<?php echo $this->base; ?>/website/website/wp-content/themes/sweethome/index.html";</script>
+        <script>var swh_ajax_uri = "<?php echo $this->base; ?>/website/website/wp-admin/admin-ajax.html";</script>
+
+        <link rel="icon" type="image/png" href="<?php echo $this->base; ?>/website/website/wp-content/themes/sweethome/assets/img/favicon.png?v=2 "/> 
 
         <?php echo $this->Html->css('Website./website/feed/index.html', array('title' => 'SweetHome &raquo; Feed', 'type' => 'application/rss+xml', 'rel' => 'alternate')); ?>
         <?php echo $this->Html->css('Website./website/comments/feed/index.html', array('title' => 'SweetHome &raquo; Comments Feed', 'type' => 'application/rss+xml', 'rel' => 'alternate')); ?>
@@ -141,9 +145,11 @@
 
         <div class="bottom-strip">
             <div class="container">
-                <div class="col-md-4">
+                <div class="col-md-4"> 
                     <p class="pull-left">
-                        © 2014 Sweet Home, All Rights Reserved			
+                        Website by <a href="http://nexoscreative.com/" target="_blank">
+                            <img style="margin-left: 2px;margin-top: -2px;" 
+                                 src="<?php echo $this->Html->url('/website/website/wp-content/themes/sweethome/assets/img/nexos.png') ?>" width="110"></a>			
                     </p>
                 </div>
                 <div class="col-md-4 bottom-strip-middle">
@@ -151,7 +157,18 @@
                 </div>
                 <div class="col-md-4">
                     <ul class="social-icons">
-                        <li><a href="#" class="fa fa-facebook"></a></li><li><a href="#" class="fa fa-google-plus"></a></li><li><a href="#" class="fa fa-twitter"></a></li><li><a href="#" class="fa fa-pinterest"></a></li><li><a href="#" class="fa fa-dribbble"></a></li><li><a href="#" class="fa fa-linkedin"></a></li>				</ul>
+                        <?php if ($structure['Structure']['phone'] != ""): ?>
+                            <li><a href="#" class="fa fa-facebook"></a></li>
+                        <?php endif; ?>
+                        <?php if($structure['Structure']['phone'] != ""): ?>
+                        <li><a href="#" class="fa fa-google-plus"></a></li>
+                        <?php endif; ?>
+                        <?php if($structure['Structure']['phone'] != ""): ?>
+                        <li><a href="#" class="fa fa-twitter"></a></li>
+                        <li><a href="#" class="fa fa-pinterest"></a></li>
+                        <li><a href="#" class="fa fa-dribbble"></a></li>
+                        <li><a href="#" class="fa fa-linkedin"></a></li>				
+                    </ul>
                 </div>
             </div>
         </div>
@@ -172,9 +189,9 @@
                 s.parentNode.insertBefore(ga, s);
             })();
         </script>
-        
+
         <?php echo $this->Html->script('Website./website/wp-content/plugins/akismet/_inc/formb12b.js?ver=3.1.1'); ?>
-        
+
         <?php echo $this->Html->script('Website./website/wp-content/plugins/contact-form-7/includes/js/jquery.form.mind03d.js?ver=3.51.0-2014.06.20'); ?>
         <script type='text/javascript'>
             /* <![CDATA[ */
@@ -214,7 +231,7 @@
         <?php echo $this->Html->script('Website./website/wp-includes/js/comment-reply.min3a05.js?ver=4.2.2'); ?>
         <?php echo $this->Html->script('Website./website/netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min3a05.js?ver=4.2.2'); ?>
 
-
+        <?php echo $this->Html->script('Website./website/wp-content/themes/sweethome/assets/js/script.js'); ?>
         <?php echo $this->Html->script('Website./website/wp-content/themes/sweethome/assets/js/jquery.flexslider-min3a05.js?ver=4.2.2'); ?>
         <?php echo $this->Html->script('Website./website/wp-content/themes/sweethome/assets/js/select.min3a05.js?ver=4.2.2'); ?>
         <?php echo $this->Html->script('Website./website/wp-content/themes/sweethome/assets/js/owl.carousel.min3a05.js?ver=4.2.2'); ?>

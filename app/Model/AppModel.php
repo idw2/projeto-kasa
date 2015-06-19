@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Application model for CakePHP.
  *
@@ -18,7 +19,6 @@
  * @since         CakePHP(tm) v 0.2.9
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-
 App::uses('Model', 'Model');
 
 /**
@@ -30,4 +30,60 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
+
+    public function userName_validate() {
+        if (!preg_match("/^([\'\\áÁ\\àÀ\\ãÃ\\âÂ\\éÉ\\èÈ\\êÊ\\íÍ\\ìÌ\\óÓ\\òÒ\\õÕ\\ôÔ\\úÚ\\ùÙ\\çÇaA-zZ]+)+((\s[\'\\áÁ\\àÀ\\ãÃ\\âÂ\\éÉ\\èÈ\\êÊ\\íÍ\\ìÌ\\óÓ\\òÒ\\õÕ\\ôÔ\\úÚ\\ùÙ\\çÇaA-zZ]+)+)?$/", $this->data['User']['name'])) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public function userUsername_validate() {
+
+        #debugger::dump(preg_match("/([a-z_]+[0-9])\w+/", $this->data['User']['username']));
+        //if (!preg_match("/^[a-z0-9_-]{3,15}$/", $this->data['User']['username'])) {
+        if (preg_match("/([a-z_]+[0-9])\w+/", $this->data['User']['username'])) {
+
+
+            if (substr_count($this->data['User']['username'], ' ')) {
+                return false;
+            } else {
+                if (is_numeric($this->data['User']['username'])) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        } else {
+
+            #debugger::dump('teste');
+//            return false;
+            if (is_numeric($this->data['User']['username'])) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
+    public function userEmail_validate() {
+        if (!preg_match("/^([\'\.\^\~\´\`\\áÁ\\àÀ\\ãÃ\\âÂ\\éÉ\\èÈ\\êÊ\\íÍ\\ìÌ\\óÓ\\òÒ\\õÕ\\ôÔ\\úÚ\\ùÙ\\çÇaA-zZ]+)+((\s[\'\.\^\~\´\`\\áÁ\\àÀ\\ãÃ\\âÂ\\éÉ\\èÈ\\êÊ\\íÍ\\ìÌ\\óÓ\\òÒ\\õÕ\\ôÔ\\úÚ\\ùÙ\\çÇaA-zZ]+)+)?$/", $this->data['User']['name'])) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public function userConfirm_password_validate() {
+//        debugger::dump($this->data['User']['password']);
+//        debugger::dump($this->data['User']['confirm_password']);
+//        die();
+        if ($this->data['User']['password'] != $this->data['User']['confirm_password']) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 }

@@ -11,14 +11,14 @@ App::uses('AppController', 'Controller');
 class PropertiesController extends AdminAppController {
 
     var $name = 'Properties';
-    var $uses = array('Property', 'Detail', 'Location', 'Photo');
+    var $uses = array('Property', 'Detail', 'Location', 'Photo', 'Agent');
 
     /**
      * Components
      *
      * @var array
      */
-    var $helpers = array('Form', 'UploadPack.Upload');
+    var $helpers = array('Form', 'UploadPack.Upload', 'Lib', 'Html');
     public $components = array('Session', 'Paginator');
 
     /**
@@ -28,7 +28,7 @@ class PropertiesController extends AdminAppController {
      */
     public function index() {
         $this->Property->recursive = 0;
-        $this->set('properties', $this->Paginator->paginate());        
+        $this->set('properties', $this->Paginator->paginate());
     }
 
     /**
@@ -53,6 +53,26 @@ class PropertiesController extends AdminAppController {
      */
     public function add() {
         if ($this->request->is('post')) {
+
+            $view = new View($this);
+            $lib = $view->loadHelper('Lib');
+
+            $url_amigavel = $lib->url_amigavel($this->data['Property']['name']);
+            $existe_url_amigavel = $this->Property->find('first', array('conditions' => array("`Property`.`url` = '{$url_amigavel}'")));
+
+            $loop = true;
+
+            $i = 1;
+            while ($loop) {
+                if (sizeof($existe_url_amigavel)) {
+                    $url_amigavel = "{$url_amigavel}-{$i}";
+                } else {
+                    $loop = false;
+                    $this->request->data['Property']['url'] = $url_amigavel;
+                }
+                $i++;
+            }
+
             $this->Property->create();
             if ($this->Property->save($this->request->data)) {
 
@@ -71,6 +91,9 @@ class PropertiesController extends AdminAppController {
                 $this->Session->setFlash(__('The property could not be saved. Please, try again.'));
             }
         }
+
+        $agents = $this->Agent->find('all', array('conditions' => array('`Agent`.`status` = 1')));
+        $this->set('agents', $agents);
     }
 
     /**
@@ -85,6 +108,26 @@ class PropertiesController extends AdminAppController {
             throw new NotFoundException(__('Invalid property'));
         }
         if ($this->request->is(array('post', 'put'))) {
+
+            $view = new View($this);
+            $lib = $view->loadHelper('Lib');
+
+            $url_amigavel = $lib->url_amigavel($this->data['Property']['name']);
+            $existe_url_amigavel = $this->Property->find('first', array('conditions' => array("`Property`.`url` = '{$url_amigavel}'")));
+
+            $loop = true;
+
+            $i = 1;
+            while ($loop) {
+                if (sizeof($existe_url_amigavel) > 1) {
+                    $url_amigavel = "{$url_amigavel}-{$i}";
+                } else {
+                    $loop = false;
+                    $this->request->data['Property']['url'] = $url_amigavel;
+                }
+                $i++;
+            }
+
             if ($this->Property->save($this->request->data)) {
                 $this->Session->setFlash(__('The property has been saved.'));
                 return $this->redirect(array('action' => 'index'));
@@ -95,6 +138,9 @@ class PropertiesController extends AdminAppController {
             $options = array('conditions' => array('Property.' . $this->Property->primaryKey => $id));
             $this->request->data = $this->Property->find('first', $options);
         }
+
+        $agents = $this->Agent->find('all', array('conditions' => array('`Agent`.`status` = 1')));
+        $this->set('agents', $agents);
     }
 
     /**
@@ -124,7 +170,7 @@ class PropertiesController extends AdminAppController {
         $this->Session->setFlash(__('* Status atualizado com sucesso!'));
         $this->redirect(array('action' => 'index'));
     }
-    
+
     function featured($id, $status) {
         $this->Property->id = $id;
         $this->Property->saveField('featured', $status);
@@ -195,7 +241,7 @@ class PropertiesController extends AdminAppController {
 //            'conditions' => array("`Photo`.`propertie_id` = '{$id}'"),
 //            'order' => array("(`Photo`.`position`+0) ASC")
 //        );
-        
+
         $photos = $this->Photo->find('all', array(
             'conditions' => array("`Photo`.`propertie_id` = '{$id}'"),
             'order' => array("(`Photo`.`position`+0) ASC")
@@ -207,6 +253,5 @@ class PropertiesController extends AdminAppController {
         $this->set('photos', $photos);
         $this->set('propertie_id', $id);
     }
-    
 
 }

@@ -46,15 +46,15 @@
                     ?>
                     <tr>
                         <td><?php echo $this->Upload->uploadImage($banner['Banner'], 'Banner.photo', array('style' => 'thumb'), array('class' => 'img-thumbnail')); ?>&nbsp;</td>
-                        <td><?php echo h($banner['Banner']['created']); ?>&nbsp;</td>
-                        <td><?php echo h($banner['Banner']['modified']); ?>&nbsp;</td>
+                        <td><?php echo $this->Lib->date_format(h($banner['Banner']['created'])); ?>&nbsp;</td>
+                        <td><?php echo $this->Lib->date_format(h($banner['Banner']['modified'])); ?>&nbsp;</td>
                         <td><?php echo h($banner['Banner']['photo_file_name']); ?>&nbsp;</td>
                         <td  class="text-center">
                             <?php if ($banner['Banner']['status']): ?>
-                                <?php echo $this->Html->link(__('<i class="fa fa-times"></i>'), array('action' => 'status', $banner['Banner']['id'], 0), array('class' => 'btn btn-xs btn-default', 'escape' => false, 'style' => 'font-size: 20px; width: 33px;')); ?>
+                                <?php echo $this->Html->link(__('<i class="fa fa-check"></i>'), array('action' => 'status', $banner['Banner']['id'], 0), array('class' => 'btn btn-xs btn-success', 'escape' => false, 'style' => 'font-size: 20px; width: 33px;')); ?>
                             
                             <?php else: ?>
-                                <?php echo $this->Html->link(__('<i class="fa fa-check"></i>'), array('action' => 'status', $banner['Banner']['id'], 1), array('class' => 'btn btn-xs btn-default', 'escape' => false, 'style' => 'font-size: 20px; width: 33px;')); ?>
+                                <?php echo $this->Html->link(__('<i class="fa fa-times"></i>'), array('action' => 'status', $banner['Banner']['id'], 1), array('class' => 'btn btn-xs btn-default', 'escape' => false, 'style' => 'font-size: 20px; width: 33px;')); ?>
                             <?php endif; ?>
                         </td>
                         <td>

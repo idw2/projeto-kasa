@@ -16,8 +16,8 @@ class BannersController extends AdminAppController {
      * @var array
      */
     var $name = 'Banners';
-    var $uses = array('Banner');
-    var $helpers = array('Form', 'UploadPack.Upload');
+    var $uses = array('Banner', 'Property');
+    var $helpers = array('Form', 'UploadPack.Upload', 'Lib');
     public $components = array('Session', 'Paginator');
 
     /**
@@ -60,6 +60,9 @@ class BannersController extends AdminAppController {
                 $this->Session->setFlash(__('The banner could not be saved. Please, try again.'));
             }
         }
+        
+        $property = $this->Property->find('all', array('conditions' => array('`Property`.`status` = 1')));
+        $this->set('properties', $property);
     }
 
     /**
@@ -84,6 +87,9 @@ class BannersController extends AdminAppController {
             $options = array('conditions' => array('Banner.' . $this->Banner->primaryKey => $id));
             $this->request->data = $this->Banner->find('first', $options);
         }
+        
+        $property = $this->Property->find('all', array('conditions' => array('`Property`.`status` = 1')));
+        $this->set('properties', $property);
     }
 
     /**

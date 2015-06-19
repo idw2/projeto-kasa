@@ -19,7 +19,7 @@ class PhotosController extends AdminAppController {
         if ($this->request->is('post')) {
             $this->Photo->create();
             if ($this->Photo->save($this->request->data)) {
-                $photo = $this->Photo->find('first');
+                $photo = $this->Photo->find('first', array('conditions' => array("`Photo`.`propertie_id` = '{$propertie_id}'"), 'order' => array('`Photo`.`created` DESC')));
                 $this->set('photo', $photo);
             }
         }
@@ -64,8 +64,10 @@ class PhotosController extends AdminAppController {
             $this->Photo->id = $this->data['Photo']['id'][$index];
             $this->Photo->saveField('position', $this->data['Photo']['position'][$index]);
         }
+        
         $this->Session->setFlash(__('* Ordem das imagens alterada com sucesso!'));
-        $this->redirect(array('controller' => 'properties', 'action' => 'photos', $propertie_id));
+//        $this->redirect(array('controller' => 'properties', 'action' => 'photos', $propertie_id));
+        $this->redirect(array('controller' => 'properties', 'action' => 'index'));
     }
 
 }

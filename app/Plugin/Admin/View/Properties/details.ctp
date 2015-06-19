@@ -11,6 +11,7 @@
         echo $this->Form->input('area', array('class' => 'form-control'));
         echo $this->Form->input('bedrooms', array('class' => 'form-control'));
         echo $this->Form->input('bathrooms', array('class' => 'form-control'));
+        echo $this->Form->input('garages', array('class' => 'form-control'));
         ?>
     </fieldset>
        <?php echo $this->element("Admin.btn_submit"); ?>

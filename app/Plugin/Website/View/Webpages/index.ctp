@@ -1,4 +1,4 @@
-<?php #pr($recents);         ?>
+<?php #pr($recents);                ?>
 <?php if (sizeof($banners) != 0): ?>
 
     <div class="main-flexslider">
@@ -12,16 +12,17 @@
                     $_image_name = explode(".{$extensao}", $banner['Banner']['photo_file_name']);
                     ?>
                     <img width="1920" height="638" src="<?php echo $this->Html->url("/files/banners/" . $banner['Banner']['id'] . "/" . $_image_name[0] . "_big." . $extensao); ?>" alt="<?php echo $banner['Banner']['photo_file_name']; ?>" />							<div class="slide-box">
-                        <h2>6571 Mill Creek Cir</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquet est nec augue malesuada dictum. Nullam elementum dictum libero quis tristique. Aenean dictum, elit non rutrum aliquam, risus lacus interdum quam, eu lacinia diam dui ac urna. Nunc leo mauris,...</p>								<ul class="slide-item-features">
-                            <li><span class="fa fa-arrows-alt"></span>1000 Sq Ft</li>
-                            <li><span class="fa fa-male"></span>4  Bathrooms</li>
-                            <li><span class="fa fa-inbox"></span>3 Bedrooms</li>
-                            <li><span class="fa fa-truck"></span>2 Garages</li>
+                        <h2><?php echo $banner['Property']['name'] ?></h2>
+                        <p><?php echo $banner['Banner']['description'] ?></p>								
+                        <ul class="slide-item-features">
+                            <li><span class="fa fa-arrows-alt"></span><?php echo $banner['Detail']['area']; ?> Sq Ft</li>
+                            <li><span class="fa fa-male"></span><?php echo $banner['Detail']['bathrooms']; ?>  Bathrooms</li>
+                            <li><span class="fa fa-inbox"></span><?php echo $banner['Detail']['bedrooms']; ?> Bedrooms</li>
+                            <li><span class="fa fa-truck"></span><?php echo $banner['Detail']['garages']; ?> Garages</li>
                         </ul>
                         <div class="slider-buttons-wrapper">
-                            <a href="property/6571-mill-creek-cir/index.html" class="yellow-btn">$500,000</a>
-                            <a href="property/6571-mill-creek-cir/index.html" class="gray-btn"><span class="fa fa-file-text-o"></span>Details</a>
+                            <a href="<?php echo $this->base ?>/details/<?php echo $banner['Property']['url']; ?>" class="yellow-btn">$<?php echo $banner['Detail']['price']; ?></a>
+                            <a href="<?php echo $this->base ?>/details/<?php echo $banner['Property']['url']; ?>" class="gray-btn"><span class="fa fa-file-text-o"></span>Details</a>
                         </div>
                     </div>
                 </li>
@@ -116,28 +117,34 @@
                             <div class="col-md-4 listing-single-item">
                                 <div class="item-inner">
                                     <div class="image-wrapper">
-                                        <a href="property/6571-mill-creek-cir-3/index.html">
+                                        <a href="<?php echo $this->base ?>/details/<?php echo $recent['Property']['url']; ?>">
                                             <?php
                                             $extensao = strtolower(pathinfo($recent['Property']['photo_file_name'], PATHINFO_EXTENSION));
                                             $_image_name = explode(".{$extensao}", $recent['Property']['photo_file_name']);
                                             ?>
                                             <img width="370" height="270" src="<?php echo $this->Html->url("/files/properties/" . $recent['Property']['id'] . "/" . $_image_name[0] . "_small." . $extensao); ?>" class="attachment-property-thumbnail-370-270 wp-post-image" alt="<?php echo $recent['Property']['photo_file_name']; ?>" />
                                         </a>
-                                        <a href="<?php echo $this->base ?>/website/website/ptype/building/index.html" class="fa fa-building-o property-type-icon"></a>
+
+                                        <?php if ($recent['Property']['type'] == 'Apartment'): ?>
+                                            <a href="<?php echo $this->base ?>/details/<?php echo $recent['Property']['url']; ?>" class="fa fa-building-o property-type-icon"></a>
+                                        <?php else: ?>
+                                            <a href="<?php echo $this->base ?>/details/<?php echo $recent['Property']['url']; ?>" class="fa fa-home property-type-icon"></a>
+                                        <?php endif; ?>
+
                                         <?php if ($recent['Property']['featured']): ?>
-                                            <a href="property/index117a.html?featured=1" class="featured"><i class="fa fa-star"></i>featured</a>
+                                            <a href="<?php echo $this->base ?>/details/<?php echo $recent['Property']['url']; ?>" class="featured"><i class="fa fa-star"></i>featured</a>
                                         <?php endif; ?>
                                     </div>			
                                     <div class="desc-box">
-                                        <h4><a href="property/6571-mill-creek-cir-3/index.html"><?php echo $recent['Property']['name'] ?></a></h4>
+                                        <h4><a href="<?php echo $this->base ?>/details/<?php echo $recent['Property']['url']; ?>"><?php echo $recent['Property']['name'] ?></a></h4>
                                         <ul class="slide-item-features item-features">
                                             <li><span class="fa fa-arrows-alt"></span><?php echo $recent['Detail']['area']; ?> Sq Ft</li>
                                             <li><span class="fa fa-male"></span><?php echo $recent['Detail']['bathrooms']; ?>  Bathrooms</li>
                                             <li><span class="fa fa-inbox"></span><?php echo $recent['Detail']['bedrooms']; ?> Bedrooms</li>
                                         </ul>
                                         <div class="buttons-wrapper">
-                                            <a href="<?php echo $this->base ?>/website/website/property/6571-mill-creek-cir-3/index.html" class="yellow-btn">$<?php echo $recent['Detail']['price']; ?></a>
-                                            <a href="<?php echo $this->base ?>/website/website/property/6571-mill-creek-cir-3/index.html" class="gray-btn">
+                                            <a href="<?php echo $this->base ?>/details/<?php echo $recent['Property']['url']; ?>" class="yellow-btn">$<?php echo $recent['Detail']['price']; ?></a>
+                                            <a href="<?php echo $this->base ?>/details/<?php echo $recent['Property']['url']; ?>" class="gray-btn">
                                                 <span class="fa fa-file-text-o"></span>
                                                 Details
                                             </a>
@@ -172,7 +179,7 @@
                             <div class="col-md-4 listing-single-item">
                                 <div class="item-inner">
                                     <div class="image-wrapper">
-                                        <a href="<?php echo $this->base ?>/website/website/property/1141-14th-street-south-5/index.html">
+                                        <a href="<?php echo $this->base ?>/details/<?php echo $featured['Property']['url']; ?>">
 
                                             <?php
                                             $extensao = strtolower(pathinfo($featured['Property']['photo_file_name'], PATHINFO_EXTENSION));
@@ -180,19 +187,23 @@
                                             ?>
                                             <img width="370" height="270" src="<?php echo $this->Html->url("/files/properties/" . $featured['Property']['id'] . "/" . $_image_name[0] . "_small." . $extensao); ?>" class="attachment-property-thumbnail-370-270 wp-post-image" alt="<?php echo $featured['Property']['photo_file_name']; ?>" />
                                         </a>
-                                        <a href="<?php echo $this->base ?>/website/website/ptype/building/index.html" class="fa fa-building-o property-type-icon"></a>
-                                        <a href="<?php echo $this->base ?>/website/website/property/index117a.html?featured=1" class="featured"><i class="fa fa-star"></i>featured</a>
+                                        <?php if ($recent['Property']['type'] == 'Apartment'): ?>
+                                            <a href="<?php echo $this->base ?>/details/<?php echo $featured['Property']['url']; ?>" class="fa fa-building-o property-type-icon"></a>
+                                        <?php else: ?>
+                                            <a href="<?php echo $this->base ?>/details/<?php echo $featured['Property']['url']; ?>" class="fa fa-home property-type-icon"></a>
+                                        <?php endif; ?>
+                                        <a href="<?php echo $this->base ?>/details/<?php echo $featured['Property']['url']; ?>" class="featured"><i class="fa fa-star"></i>featured</a>
                                     </div>			
                                     <div class="desc-box">
-                                        <h4><a href="property/6571-mill-creek-cir-3/index.html"><?php echo $featured['Property']['name'] ?></a></h4>
+                                        <h4><a href="<?php echo $this->base ?>/details/<?php echo $featured['Property']['url']; ?>"><?php echo $featured['Property']['name'] ?></a></h4>
                                         <ul class="slide-item-features item-features">
                                             <li><span class="fa fa-arrows-alt"></span><?php echo $featured['Detail']['area']; ?> Sq Ft</li>
                                             <li><span class="fa fa-male"></span><?php echo $featured['Detail']['bathrooms']; ?>  Bathrooms</li>
                                             <li><span class="fa fa-inbox"></span><?php echo $featured['Detail']['bedrooms']; ?> Bedrooms</li>
                                         </ul>
                                         <div class="buttons-wrapper">
-                                            <a href="<?php echo $this->base ?>/website/website/property/6571-mill-creek-cir-3/index.html" class="yellow-btn">$<?php echo $featured['Detail']['price']; ?></a>
-                                            <a href="<?php echo $this->base ?>/website/website/property/6571-mill-creek-cir-3/index.html" class="gray-btn">
+                                            <a href="<?php echo $this->base ?>/details/<?php echo $featured['Property']['url']; ?>" class="yellow-btn">$<?php echo $featured['Detail']['price']; ?></a>
+                                            <a href="<?php echo $this->base ?>/details/<?php echo $featured['Property']['url']; ?>" class="gray-btn">
                                                 <span class="fa fa-file-text-o"></span>
                                                 Details
                                             </a>
@@ -209,177 +220,61 @@
                 </div>
             </div>
             <div class="agents-section">
+
+
                 <div class="container">
                     <div class="title-box">
                         <h3>Our agents</h3>
                         <div class="bordered"></div>
                     </div>
                     <div class="owl-carousel agents-slider">
-                        <div class="single-agent col-xs-12 post-56 agent type-agent status-publish has-post-thumbnail hentry">
-                            <div class="image-box">
-                                <img width="270" height="256" src="<?php echo $this->base ?>/website/website/wp-content/uploads/2014/06/13_agent-photo5-270x256.png" class="attachment-agents-thumbnail-270-256 wp-post-image" alt="13_agent-photo5" />					<ul class="social-icons">
-                                    <li><a href="#" class="fa fa-google-plus"></a></li>
-                                    <li><a href="#" class="fa fa-facebook"></a></li>
-                                    <li><a href="#" class="fa fa-twitter"></a></li>
-                                    <li><a href="#" class="fa fa-instagram"></a></li>
-                                </ul>
+
+
+
+                        <?php foreach ($agents as $agent): ?>
+
+                            <div class="single-agent col-xs-12 post-56 agent type-agent status-publish has-post-thumbnail hentry">
+                                <div class="image-box">
+
+                                    <?php
+                                    $extensao = strtolower(pathinfo($agent['Agent']['photo_file_name'], PATHINFO_EXTENSION));
+                                    $_image_name = explode(".{$extensao}", $agent['Agent']['photo_file_name']);
+                                    ?>
+
+                                    <img width="270" height="256" src="<?php echo $this->Html->url("/files/agents/" . $agent['Agent']['id'] . "/" . $_image_name[0] . "_small." . $extensao); ?>" class="attachment-agents-thumbnail-270-256 wp-post-image" alt="<?php echo $agent['Agent']['photo_file_name']; ?>" />					
+                                    <ul class="social-icons">
+                                        <?php if ($agent['Agent']['google_plus'] != ""): ?>
+                                            <li><a href="<?php echo $agent['Agent']['google_plus']; ?>" class="fa fa-google-plus"></a></li>
+                                        <?php endif; ?>
+                                        <?php if ($agent['Agent']['facebook'] != ""): ?>
+                                            <li><a href="<?php echo $agent['Agent']['facebook']; ?>" class="fa fa-facebook"></a></li>
+                                        <?php endif; ?>
+                                        <?php if ($agent['Agent']['twitter'] != ""): ?>
+                                            <li><a href="<?php echo $agent['Agent']['twitter']; ?>" class="fa fa-twitter"></a></li>
+                                        <?php endif; ?>
+                                        <?php if ($agent['Agent']['instagram'] != ""): ?>
+                                            <li><a href="<?php echo $agent['Agent']['instagram']; ?>" class="fa fa-instagram"></a></li>
+                                        <?php endif; ?>
+                                    </ul>
+                                </div>
+                                <div class="desc-box">
+                                    <h4><?php echo $agent['Agent']['name']; ?></h4>
+                                    <p class="person-number">
+                                        <i class="fa fa-phone"></i> <?php echo $agent['Agent']['phone']; ?>		</p>
+                                    <p class="person-email">
+                                        <i class="fa fa-envelope"></i> <?php echo $agent['Agent']['email']; ?>		</p>
+                                    <p class="person-fax">
+                                        <i class="fa fa-print"></i> <?php echo $agent['Agent']['fax']; ?>		</p>
+                                    <a href="<?php echo $this->base ?>/agent_details/<?php echo $agent['Agent']['url']; ?>" class='gray-btn'>View full profile</a>
+                                </div>
                             </div>
-                            <div class="desc-box">
-                                <h4>Elton Smith</h4>
-                                <p class="person-number">
-                                    <i class="fa fa-phone"></i> 900 123 456 789		</p>
-                                <p class="person-email">
-                                    <i class="fa fa-envelope"></i> elton@sweethome.com		</p>
-                                <p class="person-fax">
-                                    <i class="fa fa-print"></i> 900 123 456 789		</p>
-                                <a href="<?php echo $this->base ?>/website/website/agent/elton-smith/index.html" class='gray-btn'>View full profile</a>
-                            </div>
-                        </div>													<div class="single-agent col-xs-12 post-55 agent type-agent status-publish has-post-thumbnail hentry">
-                            <div class="image-box">
-                                <img width="270" height="256" src="<?php echo $this->base ?>/website/website/wp-content/uploads/2014/06/09_agent-photo2-270x256.png" class="attachment-agents-thumbnail-270-256 wp-post-image" alt="09_agent-photo2" />					
-                                <ul class="social-icons">
-                                    <li><a href="#" class="fa fa-google-plus"></a></li>
-                                    <li><a href="#" class="fa fa-facebook"></a></li>
-                                    <li><a href="#" class="fa fa-twitter"></a></li>
-                                    <li><a href="#" class="fa fa-instagram"></a></li>
-                                </ul>
-                            </div>
-                            <div class="desc-box">
-                                <h4>John Nguyen</h4>
-                                <p class="person-number">
-                                    <i class="fa fa-phone"></i> 900 123 456 789		</p>
-                                <p class="person-email">
-                                    <i class="fa fa-envelope"></i> john@sweethome.com		</p>
-                                <p class="person-fax">
-                                    <i class="fa fa-print"></i> 900 123 456 789		</p>
-                                <a href="<?php echo $this->base ?>/website/website/agent/john-nguyen-2/index.html" class='gray-btn'>View full profile</a>
-                            </div>
-                        </div>													<div class="single-agent col-xs-12 post-54 agent type-agent status-publish has-post-thumbnail hentry">
-                            <div class="image-box">
-                                <img width="270" height="256" src="<?php echo $this->base ?>/website/website/wp-content/uploads/2014/06/08_agent-photo1-270x256.png" class="attachment-agents-thumbnail-270-256 wp-post-image" alt="08_agent-photo1" />					<ul class="social-icons">
-                                    <li><a href="#" class="fa fa-google-plus"></a></li>
-                                    <li><a href="#" class="fa fa-facebook"></a></li>
-                                    <li><a href="#" class="fa fa-twitter"></a></li>
-                                    <li><a href="#" class="fa fa-instagram"></a></li>
-                                </ul>
-                            </div>
-                            <div class="desc-box">
-                                <h4>Robb Hatman</h4>
-                                <p class="person-number">
-                                    <i class="fa fa-phone"></i> 900 123 456 789		</p>
-                                <p class="person-email">
-                                    <i class="fa fa-envelope"></i> robbhatman@sweethome.com		</p>
-                                <p class="person-fax">
-                                    <i class="fa fa-print"></i> 900 123 456 789		</p>
-                                <a href="<?php echo $this->base ?>/website/website/agent/robb-hatman-2/index.html" class='gray-btn'>View full profile</a>
-                            </div>
-                        </div>													<div class="single-agent col-xs-12 post-53 agent type-agent status-publish has-post-thumbnail hentry">
-                            <div class="image-box">
-                                <img width="270" height="256" src="<?php echo $this->base ?>/website/website/wp-content/uploads/2014/06/08_agent-photo1-270x256.png" class="attachment-agents-thumbnail-270-256 wp-post-image" alt="08_agent-photo1" />					<ul class="social-icons">
-                                    <li><a href="#" class="fa fa-google-plus"></a></li>
-                                    <li><a href="#" class="fa fa-facebook"></a></li>
-                                    <li><a href="#" class="fa fa-twitter"></a></li>
-                                    <li><a href="#" class="fa fa-instagram"></a></li>
-                                </ul>
-                            </div>
-                            <div class="desc-box">
-                                <h4>Robb Hatman</h4>
-                                <p class="person-number">
-                                    <i class="fa fa-phone"></i> 900 123 456 789		</p>
-                                <p class="person-email">
-                                    <i class="fa fa-envelope"></i> robbhatman@sweethome.com		</p>
-                                <p class="person-fax">
-                                    <i class="fa fa-print"></i> 900 123 456 789		</p>
-                                <a href="<?php echo $this->base ?>/website/website/agent/robb-hatman-3/index.html" class='gray-btn'>View full profile</a>
-                            </div>
-                        </div>													<div class="single-agent col-xs-12 post-52 agent type-agent status-publish has-post-thumbnail hentry">
-                            <div class="image-box">
-                                <img width="270" height="256" src="<?php echo $this->base ?>/website/website/wp-content/uploads/2014/06/12_agent-photo4-270x256.png" class="attachment-agents-thumbnail-270-256 wp-post-image" alt="12_agent-photo4" />					<ul class="social-icons">
-                                    <li><a href="#" class="fa fa-google-plus"></a></li>
-                                    <li><a href="#" class="fa fa-facebook"></a></li>
-                                    <li><a href="#" class="fa fa-twitter"></a></li>
-                                    <li><a href="#" class="fa fa-instagram"></a></li>
-                                </ul>
-                            </div>
-                            <div class="desc-box">
-                                <h4>Faton</h4>
-                                <p class="person-number">
-                                    <i class="fa fa-phone"></i> 900 123 456 789		</p>
-                                <p class="person-email">
-                                    <i class="fa fa-envelope"></i> toan@sweethome.com		</p>
-                                <p class="person-fax">
-                                    <i class="fa fa-print"></i> 900 123 456 789		</p>
-                                <a href="<?php echo $this->base ?>/website/website/agent/faton/index.html" class='gray-btn'>View full profile</a>
-                            </div>
-                        </div>													<div class="single-agent col-xs-12 post-51 agent type-agent status-publish has-post-thumbnail hentry">
-                            <div class="image-box">
-                                <img width="270" height="256" src="<?php echo $this->base ?>/website/website/wp-content/uploads/2014/06/11_agent-photo3-270x256.png" class="attachment-agents-thumbnail-270-256 wp-post-image" alt="11_agent-photo3" />					<ul class="social-icons">
-                                    <li><a href="#" class="fa fa-google-plus"></a></li>
-                                    <li><a href="#" class="fa fa-facebook"></a></li>
-                                    <li><a href="#" class="fa fa-twitter"></a></li>
-                                    <li><a href="#" class="fa fa-instagram"></a></li>
-                                </ul>
-                            </div>
-                            <div class="desc-box">
-                                <h4>Toan Nguyen</h4>
-                                <p class="person-number">
-                                    <i class="fa fa-phone"></i> 900 123 456 789		</p>
-                                <p class="person-email">
-                                    <i class="fa fa-envelope"></i> toan@sweethome.com		</p>
-                                <p class="person-fax">
-                                    <i class="fa fa-print"></i> 900 123 456 789		</p>
-                                <a href="<?php echo $this->base ?>/website/website/agent/toan-nguyen/index.html" class='gray-btn'>View full profile</a>
-                            </div>
-                        </div>											</div>
+
+                        <?php endforeach; ?>
+
+                    </div>										
                 </div>
             </div>	
-            <div class="services-section">
-                <div class="container">
-                    <div class="title-box">
-                        <h3>Our Services</h3>
-                        <div class="bordered">
-                        </div>
-                    </div>
-                    <div class="services-wrapper">
-                        <div class="col-md-3 single-service">
-                            <div class="bordered top-bordered">
-                            </div>
-                            <h4>Unlimited Colors</h4>
-                            <p>fully customizable</p>
-                            <div class="fa fa-flask icon-service"></div>
-                            <div class="bordered"></div>
-                            <a href="#" class='readmore'>+ read more</a>
-                        </div>
-                        <div class="col-md-3 single-service">
-                            <div class="bordered top-bordered">
-                            </div>
-                            <h4>Optimized Code</h4>
-                            <p>clean & well comented code</p>
-                            <div class="fa fa-clipboard icon-service"></div>
-                            <div class="bordered"></div>
-                            <a href="#" class='readmore'>+ read more</a>
-                        </div>
-                        <div class="col-md-3 single-service">
-                            <div class="bordered top-bordered">
-                            </div>
-                            <h4>Seo Friendly</h4>
-                            <p>optimized for search engines</p>
-                            <div class="fa fa-globe icon-service"></div>
-                            <div class="bordered"></div>
-                            <a href="#" class='readmore'>+ read more</a>
-                        </div>
-                        <div class="col-md-3 single-service">
-                            <div class="bordered top-bordered">
-                            </div>
-                            <h4>HTML5 &#038; CSS3</h4>
-                            <p>front-end services</p>
-                            <div class="fa fa-html5 icon-service"></div>
-                            <div class="bordered"></div>
-                            <a href="#" class='readmore'>+ read more</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
 </div>
