@@ -146,7 +146,8 @@ class UsersController extends AdminAppController {
         if ($this->request->is('post')) {
             /* login and redirect to url set in app controller */
             if ($this->Auth->login()) {
-                return $this->redirect($this->Auth->redirect());
+//                return $this->redirect($this->Auth->redirect());
+                return $this->redirect(array('controller' => 'properties', 'action' => 'index', 'plugin' => 'admin'));
             }
             $this->Session->setFlash(__('Invalid username or password, try again'));
         }

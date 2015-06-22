@@ -2,17 +2,28 @@
     <div id="top-strip">
         <div class="container">
             <ul class="pull-left social-icons">
-                <li><a href="#" class="fa fa-facebook"></a></li>
-                <li><a href="#" class="fa fa-google-plus"></a></li>
-                <li><a href="#" class="fa fa-twitter"></a></li>
-                <li><a href="#" class="fa fa-pinterest"></a></li>
-                <li><a href="#" class="fa fa-dribbble"></a></li>
-                <li><a href="#" class="fa fa-linkedin"></a>
-                </li>			
+                <?php if ($structure['Structure']['facebook'] != ""): ?>
+                    <li><a href="<?php echo $structure['Structure']['facebook']; ?>" class="fa fa-facebook"></a></li>
+                <?php endif; ?>
+                <?php if ($structure['Structure']['google_plus'] != ""): ?>
+                    <li><a href="<?php echo $structure['Structure']['google_plus']; ?>" class="fa fa-google-plus"></a></li>
+                <?php endif; ?>
+                <?php if ($structure['Structure']['twitter'] != ""): ?>
+                    <li><a href="<?php echo $structure['Structure']['twitter']; ?>" class="fa fa-twitter"></a></li>
+                <?php endif; ?>
+                <?php if ($structure['Structure']['pinterest'] != ""): ?>
+                    <li><a href="<?php echo $structure['Structure']['pinterest']; ?>" class="fa fa-pinterest"></a></li>
+                <?php endif; ?>
+                <?php if ($structure['Structure']['dribbble'] != ""): ?>
+                    <li><a href="<?php echo $structure['Structure']['dribbble']; ?>" class="fa fa-dribbble"></a></li>
+                <?php endif; ?>
+                <?php if ($structure['Structure']['linkedin'] != ""): ?>
+                    <li><a href="<?php echo $structure['Structure']['linkedin']; ?>" class="fa fa-linkedin"></a></li>				
+                <?php endif; ?>			
             </ul>
             <div id="contact-box" class='pull-right'>
-                <a href="mailto:info@marstheme.com" class='fa fa-envelope'><span>info@realtykaza.com</span></a>
-                <a href="#" class='fa fa-phone'><span> +399 (500) 321 9548</span></a>
+                <a href="mailto:<?php echo $structure['Structure']['email']; ?>" class='fa fa-envelope'><span><?php echo $structure['Structure']['email']; ?></span></a>
+                <a href="#" class='fa fa-phone'><span> <?php echo $structure['Structure']['phone']; ?></span></a>
             </div>
         </div>
     </div>

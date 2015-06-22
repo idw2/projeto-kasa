@@ -486,8 +486,9 @@ header #contact-box a span {
   background-color:#FFF;
 }
 .search-section .select-wrapper {
-  float:left;
+  /*float:left;*/
   margin:20px 7px;
+  display: inline-block;
 }
 .search-section .select-wrapper a{
 	min-width: 85px;

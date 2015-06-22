@@ -3,9 +3,9 @@
         <div class="pull-left page-title">
             <h2><?php echo $agent['Agent']['name']; ?></h2>
         </div>
-        <div class="pull-right breadcrumb">
-            <!-- Breadcrumb NavXT 5.2.0 -->
-            <a title="Go to SweetHome." href="<?php echo $this->base ?>/website/website/index.html" class="home">SweetHome</a><span class="fa fa-arrow-circle-right sep"></span><a title="Go to News." href="<?php echo $this->base ?>/website/website/news/index.html">News</a><span class="fa fa-arrow-circle-right sep"></span><a title="Go to Agents." href="../index.html">Agents</a><span class="fa fa-arrow-circle-right sep"></span>John Nguyen			</div>
+        
+        <?php echo $this->element("Website.breadcrumb"); ?>
+        
     </div>
 </div>
 
@@ -52,7 +52,7 @@
                         <p class="person-fax">
                             <i class="fa fa-print"></i> <?php echo $agent['Agent']['fax']; ?>				
                         </p>
-                        <a href="<?php echo $this->base ?>/website/website/property/index4f30.html?ofagent=55" class="gray-btn">View all property</a>
+                        <!--<a href="<?php echo $this->base ?>/website/website/property/index4f30.html?ofagent=55" class="gray-btn">View all property</a>-->
                     </div>
             
                         <div class="clearfix"></div>

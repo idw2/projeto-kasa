@@ -32,7 +32,7 @@
         echo $this->Form->input('zip_code', array('class'=> 'form-control'));
         ?>
 
-        <input type="hidden" class="gllpZoom" value="3"/>
+        <input type="hidden" class="gllpZoom" value="17"/>
     </fieldset>
 
 

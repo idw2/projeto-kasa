@@ -141,6 +141,10 @@
 
         <!-- footer-section -->
 
+        <!--<div class="container">-->
+        <?php #echo $this->element('sql_dump'); ?>
+        <!--</div>-->
+
         <?php echo $this->element('Website.footer'); ?>
 
         <div class="bottom-strip">
@@ -157,17 +161,24 @@
                 </div>
                 <div class="col-md-4">
                     <ul class="social-icons">
-                        <?php if ($structure['Structure']['phone'] != ""): ?>
-                            <li><a href="#" class="fa fa-facebook"></a></li>
+                        <?php if ($structure['Structure']['facebook'] != ""): ?>
+                            <li><a href="<?php echo $structure['Structure']['facebook']; ?>" class="fa fa-facebook"></a></li>
                         <?php endif; ?>
-                        <?php if($structure['Structure']['phone'] != ""): ?>
-                        <li><a href="#" class="fa fa-google-plus"></a></li>
+                        <?php if ($structure['Structure']['google_plus'] != ""): ?>
+                            <li><a href="<?php echo $structure['Structure']['google_plus']; ?>" class="fa fa-google-plus"></a></li>
                         <?php endif; ?>
-                        <?php if($structure['Structure']['phone'] != ""): ?>
-                        <li><a href="#" class="fa fa-twitter"></a></li>
-                        <li><a href="#" class="fa fa-pinterest"></a></li>
-                        <li><a href="#" class="fa fa-dribbble"></a></li>
-                        <li><a href="#" class="fa fa-linkedin"></a></li>				
+                        <?php if ($structure['Structure']['twitter'] != ""): ?>
+                            <li><a href="<?php echo $structure['Structure']['twitter']; ?>" class="fa fa-twitter"></a></li>
+                        <?php endif; ?>
+                        <?php if ($structure['Structure']['pinterest'] != ""): ?>
+                            <li><a href="<?php echo $structure['Structure']['pinterest']; ?>" class="fa fa-pinterest"></a></li>
+                        <?php endif; ?>
+                        <?php if ($structure['Structure']['dribbble'] != ""): ?>
+                            <li><a href="<?php echo $structure['Structure']['dribbble']; ?>" class="fa fa-dribbble"></a></li>
+                        <?php endif; ?>
+                        <?php if ($structure['Structure']['linkedin'] != ""): ?>
+                            <li><a href="<?php echo $structure['Structure']['linkedin']; ?>" class="fa fa-linkedin"></a></li>				
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>
@@ -175,7 +186,8 @@
         <div style="display:none">
         </div>
         <script>jQuery(document).ready(function ($) {
-            });</script>
+            });
+        </script>
         <script type="text/javascript">
             var _gaq = _gaq || [];
             _gaq.push(['_setAccount', 'UA-49348100-1']);
@@ -239,7 +251,7 @@
         <?php echo $this->Html->script('Website./website/wp-content/themes/sweethome/assets/js/custom3a05.js?ver=4.2.2'); ?>
 
         <script type='text/javascript' src='https://maps.googleapis.com/maps/api/js?sensor=false&amp;ver=4.2.2'></script>
-
+        
         <?php echo $this->Html->script('Website./website/wp-content/themes/sweethome/assets/js/gmap3a05.js?ver=4.2.2'); ?>
         <script type='text/javascript' src='<?php echo $this->base; ?>/website/website/stats.wp.com/e-201524.js' async defer></script>
 
@@ -248,6 +260,7 @@
             _stq.push(['view', {v: 'ext', j: '1:3.4.3', blog: '84642158', post: '74', tz: '0'}]);
             _stq.push(['clickTrackerInit', '84642158', '74']);
         </script>
+
     </body>
 
     <!-- Mirrored from sweethome.marstheme.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 09 Jun 2015 19:31:08 GMT -->

@@ -3,9 +3,9 @@
         <div class="pull-left page-title">
             <h2>Our agents</h2>
         </div>
-        <div class="pull-right breadcrumb">
-            <!-- Breadcrumb NavXT 5.2.0 -->
-            <a title="Go to SweetHome." href="<?php echo $this->base ?>/website/website/index.html" class="home">SweetHome</a><span class="fa fa-arrow-circle-right sep"></span><a title="Go to News." href="<?php echo $this->base ?>/website/website/news/index.html">News</a><span class="fa fa-arrow-circle-right sep"></span>Agents			</div>
+        
+        <?php echo $this->element("Website.breadcrumb"); ?>
+        
     </div>
 </div>
 
