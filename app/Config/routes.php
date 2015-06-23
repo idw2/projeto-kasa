@@ -28,6 +28,8 @@
 	Router::connect('/', array('controller' => 'webpages', 'action' => 'index', 'plugin' => 'website'));
 	Router::connect('/listings', array('controller' => 'webpages', 'action' => 'listings', 'plugin' => 'website'));
 	Router::connect('/contact_us', array('controller' => 'webpages', 'action' => 'contact_us', 'plugin' => 'website'));
+	Router::connect('/newsletter', array('controller' => 'webpages', 'action' => 'newsletter', 'plugin' => 'website'));
+	Router::connect('/comments', array('controller' => 'webpages', 'action' => 'comments', 'plugin' => 'website'));
 	Router::connect('/details', array('controller' => 'webpages', 'action' => 'details', 'plugin' => 'website'));
 	Router::connect('/details/*', array('controller' => 'webpages', 'action' => 'details', 'plugin' => 'website'));
 	Router::connect('/agents', array('controller' => 'webpages', 'action' => 'agents', 'plugin' => 'website'));

@@ -49,12 +49,12 @@ class EmailConfig {
     
     public $smtp = array(
         'transport' => 'Smtp',
-        'from' => array('gus@designlab.com.br' => 'gus@designlab.com.br'),
+        'from' => array('rogerio@designlab.com.br' => 'rogerio@designlab.com.br'),
         'host' => 'ssl://smtp.gmail.com',
         'port' => 465,
         'timeout' => 30,
-        'username' => 'gus@designlab.com.br',
-        'password' => 'lgsilva1023',
+        'username' => 'rogerio@designlab.com.br',
+        'password' => 'corretor123',
         'client' => null,
         'log' => false,
             //'charset' => 'utf-8',

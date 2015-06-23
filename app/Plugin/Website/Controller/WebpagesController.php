@@ -31,7 +31,7 @@ class WebpagesController extends WebsiteAppController {
 
         $this->set('recents', $this->Property->find('all', array(
                     'fields' => array('`Property`.*, `Detail`.*'),
-                    'conditions' => array("`Property`.`status` = 1 and `Property`.`language` = '{$this->Session->read('Config.language')}'"), 
+                    'conditions' => array("`Property`.`status` = 1 and `Property`.`language` = '{$this->Session->read('Config.language')}'"),
                     'joins' => array(array(
                             'alias' => 'Detail',
                             'table' => 'details',
@@ -55,7 +55,7 @@ class WebpagesController extends WebsiteAppController {
                     'limit' => 6
         )));
 
-        $this->set('agents', $this->Agent->find('all', array('conditions' => array("`Agent`.`status` = 1 and `Agent`.`language` = '{$this->Session->read('Config.language')}'")))); 
+        $this->set('agents', $this->Agent->find('all', array('conditions' => array("`Agent`.`status` = 1 and `Agent`.`language` = '{$this->Session->read('Config.language')}'"))));
     }
 
     public function details($url) {
@@ -243,17 +243,81 @@ class WebpagesController extends WebsiteAppController {
                 $Email->viewVars($vars);
                 $Email->template('Website.contact_us')
                         ->emailFormat('html')
-                        ->to('rogerio@designlab.com.br')
+                        ->to('gus@designlab.com.br')
                         ->subject('Contact us')
                         ->send();
-                
+
                 $this->Session->setFlash(__('* Sua mensagem foi enviada com sucesso!'));
                 $this->redirect(array('action' => 'contact_us'));
-                
-                
             } else {
                 $this->Session->setFlash(__('* Name, e-mail and description required!'));
             }
+        }
+    }
+
+    public function newsletter() {
+
+        if ($this->request->is('post')) {
+
+            $email = $this->request->data['email'];
+
+            if ($email == "") {
+                $this->Session->setFlash(__('* E-mail required!'));
+                $this->Session->write('erro_newsletter', true);
+                $this->redirect($this->referer());
+            } else {
+
+                $vars = array('email' => $email);
+
+                $Email = new CakeEmail('smtp');
+                $Email->viewVars($vars);
+                $Email->template('Website.newsletter')
+                        ->emailFormat('html')
+                        ->to('gus@designlab.com.br')
+                        ->subject('Newsletter')
+                        ->send();
+
+                $this->Session->setFlash(__('* Newsletter cadastrada com sucesso!'));
+                $this->redirect($this->referer());
+            }
+        } else {
+            $this->redirect($this->referer());
+        }
+    }
+
+    public function comments() {
+
+        if ($this->request->is('post')) {
+
+//            debugger::dump($this->request->data);
+//            die();
+
+            $author = $this->request->data['author'];
+            $email = $this->request->data['email'];
+            $property_name = $this->request->data['property_name'];
+            $comment = $this->request->data['comment'];
+
+            if ($author == "" || $email == "" || $property_name == "" || $comment == "") {
+                $this->Session->setFlash(__('* all fields required!'));
+                $this->Session->write('erro_comments', true);
+                $this->redirect($this->referer());
+            } else {
+
+                $vars = array('author' => $author, 'email' => $email, 'property_name' => $property_name, 'comment' => $comment);
+
+                $Email = new CakeEmail('smtp');
+                $Email->viewVars($vars);
+                $Email->template('Website.comments')
+                        ->emailFormat('html')
+                        ->to('gus@designlab.com.br')
+                        ->subject('Comments')
+                        ->send();
+
+                $this->Session->setFlash(__('* Comments send success!'));
+                $this->redirect($this->referer());
+            }
+        } else {
+            $this->redirect($this->referer());
         }
     }
 
@@ -282,11 +346,11 @@ class WebpagesController extends WebsiteAppController {
         $this->set('minprice', $minprice);
         $this->set('maxprice', $maxprice);
     }
-    
+
     function updateLanguage($language) {
         $this->layout = "ajax";
         $this->autoRender = FALSE;
-        Configure::write('Config.language', $language);   
+        Configure::write('Config.language', $language);
         $this->Session->write('Config.language', $language);
         return false;
     }

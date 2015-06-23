@@ -6,7 +6,7 @@
             <?php else: ?>
                 <h2><?php echo __($property['Property']['name']); ?></h2>
             <?php endif; ?>
-            
+
         </div>
 
         <?php echo $this->element("Website.breadcrumb"); ?>
@@ -213,38 +213,48 @@
                                     </a>
                                 </small>
                             </h3>
-                            <form action="http://sweethome.marstheme.com/wp-comments-post.php" method="post" id="commentform" class="contact-form" novalidate="">
-                                <p class="comment-notes"><?php echo __("Your email address will not be published."); ?></p>							
+                            <form action="<?php echo $this->base; ?>/comments" method="post" id="commentform" class="contact-form" novalidate="">
+
+                                <?php if ($this->Session->read('erro_comments')): ?>
+                                    <?php echo $this->element("Admin.flash"); ?>
+                                <?php endif; ?>
+                                
+                                <p class="comment-notes">
+                                    <?php echo __("Your email address will not be published."); ?>
+                                </p>							
                                 <div class="row">
                                     <div class="col-sm-12">
-
                                         <input type="text" id="author" name="author" placeholder="Name">		
+                                        <input type="hidden" value="<?php echo __($property['Property']['name']); ?>" name="property_name" placeholder="<?php echo __('Name'); ?>">		
                                     </div>
 
                                     <div class="col-sm-12">
-                                        <input type="text" id="email" name="email" placeholder="e-mail"></div>
+                                        <input type="text" id="email" name="email" placeholder="<?php echo __('E-mail'); ?>">
+                                    </div>
+
+                                    <!--                                    <div class="col-sm-12">
+                                                                            <input type="text" id="url" name="url" placeholder="website">
+                                                                        </div>-->
 
                                     <div class="col-sm-12">
-                                        <input type="text" id="url" name="url" placeholder="website"></div>
-
-
-                                    <div class="col-sm-12">
-                                        <textarea id="comment" name="comment" placeholder="Message"></textarea>
+                                        <textarea id="comment" name="comment" placeholder="<?php echo __('Message'); ?>"></textarea>
                                         <input type="submit" value="Send message">
                                     </div>				                      
                                 </div>
-                                <p class="form-submit"><input name="submit" type="submit" id="submit" class="" value="Send message"> <input type="hidden" name="comment_post_ID" value="112" id="comment_post_ID">
+                                <p class="form-submit">
+                                    <input name="submit" type="submit" id="submit" class="" value="<?php echo __('Send message'); ?>"> 
+                                    <input type="hidden" name="comment_post_ID" value="112" id="comment_post_ID">
                                     <input type="hidden" name="comment_parent" id="comment_parent" value="0">
                                 </p>
                                 <p style="display: none;">
                                     <input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="093d7beeb1">
                                 </p>
-                                <p class="comment-subscription-form">
+<!--                                <p class="comment-subscription-form">
                                     <input type="checkbox" name="subscribe_comments" id="subscribe_comments" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;"> 
                                     <label class="subscribe-label" id="subscribe-label" for="subscribe_comments">Notify me of follow-up comments by email.</label></p><p class="comment-subscription-form">
                                     <input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;"> 
                                     <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog">Notify me of new posts by email.</label></p><p style="display: none;">
-                                </p>					
+                                </p>					-->
                                 <input type="hidden" id="ak_js" name="ak_js" value="1434482549136"></form>
                         </div><!-- #respond -->
 
