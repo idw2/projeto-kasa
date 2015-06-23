@@ -16,6 +16,7 @@
     echo $this->Form->input('twitter', array('class' => 'form-control'));
     echo $this->Form->input('instagram', array('class' => 'form-control'));
     echo $this->Form->input('status', array('type' => 'hidden', 'value' => 1));
+    echo $this->Form->input('language', array('type' => 'hidden', 'value' => $this->Session->read('Config.language')));
     echo $this->Form->input('url', array('type' => 'hidden'));
     ?>
     <?php echo $this->element("Admin.btn_submit"); ?>

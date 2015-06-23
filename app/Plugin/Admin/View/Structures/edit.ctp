@@ -10,6 +10,8 @@
     echo $this->Form->input('pinterest', array('placeholder' => 'Pinterest', 'class' => 'form-control'));
     echo $this->Form->input('dribbble', array('placeholder' => 'Dribbble', 'class' => 'form-control'));
     echo $this->Form->input('linkedin', array('placeholder' => 'Linkedin', 'class' => 'form-control'));
+    echo $this->Form->input('instagram', array('placeholder' => 'Instagram', 'class' => 'form-control'));
+    echo $this->Form->input('address', array('placeholder' => 'Address', 'class' => 'form-control'));
     echo $this->Form->input('email', array('label' => 'E-mail', 'placeholder' => 'E-mail', 'class' => 'form-control'));
     echo $this->Form->input('phone', array('placeholder' => 'Phone', 'class' => 'form-control'));
     echo $this->Form->input('fax', array('placeholder' => 'Fax', 'class' => 'form-control'));

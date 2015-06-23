@@ -7,6 +7,7 @@
     <?php
     echo $this->Form->input('Banner.photo', array('type' => 'file'));
     echo $this->Form->input('status', array('type' => 'hidden', 'value' => 0));
+    echo $this->Form->input('language', array('type' => 'hidden', 'value' => $this->Session->read('Config.language')));
 
     $options = array();
     foreach ($properties as $propertie) {

@@ -27,6 +27,14 @@ class AgentsController extends AdminAppController {
      */
     public function index() {
         $this->Agent->recursive = 0;
+        
+        $this->paginate = array(
+            'fields' => array('`Agent`.*'),
+            'conditions' => array("`Agent`.`language` = '{$this->Session->read('Config.language')}'"),
+            'order' => array('Agent.created DESC'),
+            'limit' => 26
+        );
+        
         $this->set('agents', $this->Paginator->paginate());
     }
 

@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-sm-12">
-        <div class="pull-left">
+        <div class="pull-left hidden">
             <div class="dataTables_info" id="datatable_info">
                 <?php
                 echo $this->Paginator->counter(array(
@@ -10,12 +10,14 @@
             </div>
 
         </div>
-        <div class="pull-right">
+        <div class="pull-left">
+       
             <div class="dataTables_paginate paging_bs_normal">
-                <ul class="pagination">
+           
+                <ul class="pagination pagination-lg">
                     <li class="prev disabled">
                         <?php
-                        echo $this->Paginator->prev('<span class="fa fa-angle-left"></span> Anterior', array('escape' => false), null, array('class' => 'icon item', 'escape' => false));
+                        echo $this->Paginator->prev(__('<i class="fa fa-angle-left"></i>'), array('escape' => false), null, array('class' => 'icon item', 'escape' => false));
                         ?>
                     </li>
                     <li>
@@ -25,11 +27,13 @@
                     </li>
                     <li class="next disabled">
                         <?php
-                        echo $this->Paginator->next('Próxima <span class="fa fa-angle-right"></span>', array('escape' => false), null, array('class' => 'icon item', 'escape' => false));
+                        echo $this->Paginator->next(__('<i class="fa fa-angle-right"></i>'), array('escape' => false), null, array('class' => 'icon item', 'escape' => false));
                         ?>
                     </li>
 
                 </ul>
+                   
+            </div>
             </div>
         </div>
         <div class="clearfix"></div>

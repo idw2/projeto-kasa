@@ -17,7 +17,7 @@
         <!-- CSS -->
         <?php echo $this->Html->css('/app/webroot/css/uploadfile.css'); ?>
 
-        
+
         <!-- Custom Fonts -->
         <?php echo $this->Html->css('Admin./startbootstrap-sb-admin-1.0.3/font-awesome/css/font-awesome.min'); ?>
 
@@ -82,6 +82,33 @@
         <script src="<?php echo $this->base; ?>/js/jquery-latitude-longitude-picker-gmaps-master/js/jquery-gmaps-latlon-picker.js"></script>
 
         <?php echo $this->Html->script('default'); ?>
+
+
+        <script>
+            jQuery(document).ready(function ($) {
+
+                if ($(".update-laguage").hasClass("update-laguage")) {
+                    $(".update-laguage").each(function (i) {
+                        $(this).click(function () {
+                            updateLanguage($(this).attr("data-base"), $(this).attr("data-language"));
+                        });
+                    });
+                }
+
+            });
+
+            function updateLanguage(base, language) {
+
+                jQuery.ajax({
+                    type: 'post',
+                    data: "language=" + language,
+                    url: base + '/website/webpages/updateLanguage/' + language,
+                    success: function (data) {
+                        window.location.reload();
+                    }
+                });
+            }
+        </script>
 
         <!-- Morris Charts JavaScript -->    
         <?php #echo $this->Html->script('Admin./startbootstrap-sb-admin-1.0.3/js/plugins/morris/raphael.min'); ?>

@@ -36,6 +36,7 @@
 
         echo $this->Form->input('description', array('class' => 'ckeditor'));
         echo $this->Form->input('status', array('type' => 'hidden', 'value' => 1));
+        echo $this->Form->input('language', array('type' => 'hidden', 'value' => $this->Session->read('Config.language')));
         echo $this->Form->input('url', array('type' => 'hidden'));
         ?>
     </fieldset>

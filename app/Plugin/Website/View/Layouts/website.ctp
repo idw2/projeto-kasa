@@ -151,7 +151,7 @@
             <div class="container">
                 <div class="col-md-4"> 
                     <p class="pull-left">
-                        Website by <a href="http://nexoscreative.com/" target="_blank">
+                        <?php echo __("Website by"); ?> <a href="http://nexoscreative.com/" target="_blank">
                             <img style="margin-left: 2px;margin-top: -2px;" 
                                  src="<?php echo $this->Html->url('/website/website/wp-content/themes/sweethome/assets/img/nexos.png') ?>" width="110"></a>			
                     </p>
@@ -163,6 +163,9 @@
                     <ul class="social-icons">
                         <?php if ($structure['Structure']['facebook'] != ""): ?>
                             <li><a href="<?php echo $structure['Structure']['facebook']; ?>" class="fa fa-facebook"></a></li>
+                        <?php endif; ?>
+                        <?php if ($structure['Structure']['instagram'] != ""): ?>
+                            <li><a href="<?php echo $structure['Structure']['instagram']; ?>" class="fa fa-instagram"></a></li>
                         <?php endif; ?>
                         <?php if ($structure['Structure']['google_plus'] != ""): ?>
                             <li><a href="<?php echo $structure['Structure']['google_plus']; ?>" class="fa fa-google-plus"></a></li>
@@ -185,8 +188,30 @@
         </div>
         <div style="display:none">
         </div>
-        <script>jQuery(document).ready(function ($) {
+        <script>
+            jQuery(document).ready(function ($) {
+
+                if ($(".update-laguage").hasClass("update-laguage")) {
+                    $(".update-laguage").each(function (i) {
+                        $(this).click(function () {
+                            updateLanguage($(this).attr("data-base"), $(this).attr("data-language"));
+                        });
+                    });
+                }
+
             });
+
+            function updateLanguage(base, language) {
+
+                jQuery.ajax({
+                    type: 'post',
+                    data: "language=" + language,
+                    url: base + '/website/webpages/updateLanguage/' + language,
+                    success: function (data) {
+                        window.location.reload();
+                    }
+                });
+            }
         </script>
         <script type="text/javascript">
             var _gaq = _gaq || [];
@@ -251,7 +276,7 @@
         <?php echo $this->Html->script('Website./website/wp-content/themes/sweethome/assets/js/custom3a05.js?ver=4.2.2'); ?>
 
         <script type='text/javascript' src='https://maps.googleapis.com/maps/api/js?sensor=false&amp;ver=4.2.2'></script>
-        
+
         <?php echo $this->Html->script('Website./website/wp-content/themes/sweethome/assets/js/gmap3a05.js?ver=4.2.2'); ?>
         <script type='text/javascript' src='<?php echo $this->base; ?>/website/website/stats.wp.com/e-201524.js' async defer></script>
 
@@ -260,6 +285,7 @@
             _stq.push(['view', {v: 'ext', j: '1:3.4.3', blog: '84642158', post: '74', tz: '0'}]);
             _stq.push(['clickTrackerInit', '84642158', '74']);
         </script>
+
 
     </body>
 

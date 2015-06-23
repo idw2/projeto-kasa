@@ -1,6 +1,7 @@
 <?php
 
 App::uses('AppController', 'Controller');
+App::uses('CakeEmail', 'Network/Email');
 
 class WebpagesController extends WebsiteAppController {
 
@@ -10,7 +11,7 @@ class WebpagesController extends WebsiteAppController {
     public $components = array('Session', 'Paginator');
 
     public function index() {
-        $this->set('banners', $this->Banner->find('all', array('conditions' => array('`Banner`.`status` = 1'),
+        $this->set('banners', $this->Banner->find('all', array('conditions' => array("`Banner`.`status` = 1 and `Banner`.`language` = '{$this->Session->read('Config.language')}'"),
                     'fields' => array('`Banner`.*, `Property`.*, `Detail`.*'),
                     'joins' => array(array(
                             'alias' => 'Detail',
@@ -30,7 +31,7 @@ class WebpagesController extends WebsiteAppController {
 
         $this->set('recents', $this->Property->find('all', array(
                     'fields' => array('`Property`.*, `Detail`.*'),
-                    'conditions' => array('`Property`.`status` = 1'),
+                    'conditions' => array("`Property`.`status` = 1 and `Property`.`language` = '{$this->Session->read('Config.language')}'"), 
                     'joins' => array(array(
                             'alias' => 'Detail',
                             'table' => 'details',
@@ -43,7 +44,7 @@ class WebpagesController extends WebsiteAppController {
 
         $this->set('featureds', $this->Property->find('all', array(
                     'fields' => array('`Property`.*, `Detail`.*'),
-                    'conditions' => array('`Property`.`status` = 1 and `Property`.`featured` = 1'),
+                    'conditions' => array("`Property`.`status` = 1 and `Property`.`featured` = 1 and `Property`.`language` = '{$this->Session->read('Config.language')}'"),
                     'joins' => array(array(
                             'alias' => 'Detail',
                             'table' => 'details',
@@ -54,7 +55,7 @@ class WebpagesController extends WebsiteAppController {
                     'limit' => 6
         )));
 
-        $this->set('agents', $this->Agent->find('all', array('conditions' => array('`Agent`.`status` = 1'))));
+        $this->set('agents', $this->Agent->find('all', array('conditions' => array("`Agent`.`status` = 1 and `Agent`.`language` = '{$this->Session->read('Config.language')}'")))); 
     }
 
     public function details($url) {
@@ -91,8 +92,8 @@ class WebpagesController extends WebsiteAppController {
 
         $this->set('property', $property);
         $this->set('photos', $photos);
-        
-        
+
+
         $listings = $property = $this->Property->find('all', array(
             'fields' => array('`Property`.*, `Detail`.*, `Agent`.*, `Location`.*'),
             'conditions' => array("`Property`.`status` = 1"),
@@ -115,8 +116,8 @@ class WebpagesController extends WebsiteAppController {
             'limit' => 3,
             'order' => array('ROUND(Property.created)')
         ));
-            
-        $this->set('listings', $listings);    
+
+        $this->set('listings', $listings);
     }
 
     public function agent_details($url) {
@@ -133,7 +134,7 @@ class WebpagesController extends WebsiteAppController {
 
         $this->Property->recursive = 0;
 
-        $conditions = array('`Property`.`status` = 1');
+        $conditions = array("`Property`.`status` = 1 and `Property`.`language` = '{$this->Session->read('Config.language')}'");
 
         $type = "";
         $city = "";
@@ -150,7 +151,7 @@ class WebpagesController extends WebsiteAppController {
             $type = $this->request->data['var_ptype'];
 
             if ($type != "") {
-                $type = "and (`Property`.`type` = '{$type}' ";
+                $type = "and `Property`.`type` = '{$type}' ";
             }
 
             $city = $this->request->data['var_location'];
@@ -184,7 +185,7 @@ class WebpagesController extends WebsiteAppController {
                 . "{$bathrooms}"
                 . "{$bedrooms}"
                 . "{$price}"
-                . ")");
+                . "");
 
             $type = $this->request->data['var_ptype'];
             $city = $this->request->data['var_location'];
@@ -219,19 +220,46 @@ class WebpagesController extends WebsiteAppController {
                 )
             ),
             'order' => array('Property.created DESC'),
-            'limit' => 1
+            'limit' => 21
         );
 
         $this->set('recents', $this->Paginator->paginate());
     }
 
     public function contact_us() {
-        
+
+        if ($this->request->is('post')) {
+
+            $name = $this->request->data['Email']['name'];
+            $email = $this->request->data['Email']['email'];
+            $website = $this->request->data['Email']['website'];
+            $description = $this->request->data['Email']['description'];
+
+            if ($name != "" && $email != "" && $description != "") {
+
+                $vars = array('name' => $name, 'email' => $email, 'website' => $website, 'description' => $description);
+
+                $Email = new CakeEmail('smtp');
+                $Email->viewVars($vars);
+                $Email->template('Website.contact_us')
+                        ->emailFormat('html')
+                        ->to('rogerio@designlab.com.br')
+                        ->subject('Contact us')
+                        ->send();
+                
+                $this->Session->setFlash(__('* Sua mensagem foi enviada com sucesso!'));
+                $this->redirect(array('action' => 'contact_us'));
+                
+                
+            } else {
+                $this->Session->setFlash(__('* Name, e-mail and description required!'));
+            }
+        }
     }
 
     function beforeFilter() {
         parent::beforeFilter();
-        $this->set('structure', $this->Structure->find('first', array('conditions' => array('`Structure`.`status` = 1'))));
+        $this->set('structure', $this->Structure->find('first', array('conditions' => array("`Structure`.`status` = 1 and `Structure`.`language` = '{$this->Session->read('Config.language')}'"))));
         $this->set('locations', $this->Location->find("all", array(
                     'conditions' => array("`Location`.`city` != ''"),
                     'fields' => array('`Location`.`city`'),
@@ -253,6 +281,14 @@ class WebpagesController extends WebsiteAppController {
         $this->set('bedrooms', $bedrooms);
         $this->set('minprice', $minprice);
         $this->set('maxprice', $maxprice);
+    }
+    
+    function updateLanguage($language) {
+        $this->layout = "ajax";
+        $this->autoRender = FALSE;
+        Configure::write('Config.language', $language);   
+        $this->Session->write('Config.language', $language);
+        return false;
     }
 
 }

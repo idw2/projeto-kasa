@@ -15,6 +15,7 @@ class AdminAppController extends AppController {
     );
 
     function beforeFilter() {
+        
         $this->layout = "admin";
 
         /* set actions that will not require login */

@@ -1,5 +1,6 @@
 <div class="col col-sm-12 col-md-12 col-lg-12">
 
+    <?php echo $this->element("Admin.language"); ?>
     <div>
         <?php echo $this->Html->link(__('New Structure'), array('action' => 'add'), array('class' => 'btn btn-default')); ?>
     </div>
@@ -10,6 +11,7 @@
                 <tr>
                     <th><?php echo $this->Paginator->sort('created'); ?></th>
                     <th><?php echo $this->Paginator->sort('modified'); ?></th>
+                    <th><?php echo $this->Paginator->sort('language'); ?></th>
                     <th><?php echo $this->Paginator->sort('email'); ?></th>
                     <th><?php echo $this->Paginator->sort('phone'); ?></th>
                     <th><?php echo $this->Paginator->sort('fax'); ?></th>
@@ -22,6 +24,7 @@
                     <tr>
                         <td><?php echo $this->Lib->date_format(h($structure['Structure']['created'])); ?>&nbsp;</td>
                         <td><?php echo $this->Lib->date_format(h($structure['Structure']['modified'])); ?>&nbsp;</td>
+                        <td><?php echo h($structure['Structure']['language']); ?>&nbsp;</td>
                         <td><?php echo h($structure['Structure']['email']); ?>&nbsp;</td>
                         <td><?php echo h($structure['Structure']['phone']); ?>&nbsp;</td>
                         <td><?php echo h($structure['Structure']['fax']); ?>&nbsp;</td>

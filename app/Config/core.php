@@ -177,6 +177,8 @@
  * Note: The final cache file name will then be `prefix_cachefilename`.
  */
 	//Configure::write('Cache.viewPrefix', 'prefix');
+        
+        Configure::write('Config.language', 'eng');
 
 /**
  * Session configuration.

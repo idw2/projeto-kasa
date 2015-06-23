@@ -33,6 +33,14 @@ class StructuresController extends AdminAppController {
      */
     public function index() {
         $this->Structure->recursive = 0;
+        
+        $this->paginate = array(
+            'fields' => array('`Structure`.*'),
+            'conditions' => array("`Structure`.`language` = '{$this->Session->read('Config.language')}'"),
+            'order' => array('Structure.created DESC'),
+            'limit' => 26
+        );
+        
         $this->set('structures', $this->Paginator->paginate());
     }
 
@@ -116,7 +124,7 @@ class StructuresController extends AdminAppController {
     function status($id, $status) {
 
         $this->Structure->updateAll(
-                array('`Structure`.`status`' => 0), array("`Structure`.`id` != ''")
+                array('`Structure`.`status`' => 0), array("`Structure`.`id` != '' and `Structure`.`language` = '{$this->Session->read('Config.language')}'")
         );
         if ($status == 1) {
             $this->Structure->id = $id;

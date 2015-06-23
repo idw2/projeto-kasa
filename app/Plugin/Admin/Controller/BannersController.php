@@ -27,6 +27,14 @@ class BannersController extends AdminAppController {
      */
     public function index() {
         $this->Banner->recursive = 0;
+        
+        $this->paginate = array(
+            'fields' => array('`Banner`.*'),
+            'conditions' => array("`Banner`.`language` = '{$this->Session->read('Config.language')}'"),
+            'order' => array('Banner.created DESC'),
+            'limit' => 26
+        );
+        
         $this->set('banners', $this->Paginator->paginate());
     }
 

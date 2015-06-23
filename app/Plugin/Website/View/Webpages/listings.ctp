@@ -1,11 +1,15 @@
 <div class="page-title-section" style="background:url(<?php echo $this->base ?>/website/website/wp-content/uploads/2014/06/blog-header-bg.png)">
     <div class="container">
         <div class="pull-left page-title">
-            <h2>Property listing</h2>
+            <?php if ($this->Session->read('Config.language') == "eng"): ?>
+                <h2>Property listing</h2>
+            <?php else: ?>
+                <h2>Lista de Imóveis</h2>
+            <?php endif; ?>            
         </div>
-        
+
         <?php echo $this->element("Website.breadcrumb"); ?>
-        
+
     </div>
 </div>
 
@@ -61,8 +65,8 @@
             <?php endforeach; ?>
 
         </div>
-        
+
         <?php echo $this->element("Admin.paginator"); ?>
-        
+
     </div>
 </div>

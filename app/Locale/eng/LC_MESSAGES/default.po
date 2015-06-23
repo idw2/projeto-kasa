@@ -1,0 +1,177 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"PO-Revision-Date: 2015-06-23 14:22-0300\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: EMAIL@ADDRESS\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"POT-Creation-Date: \n"
+"X-Generator: Poedit 1.8.1\n"
+"Language: en\n"
+
+#: /Controller/WebpagesController.php:250
+msgid "* Sua mensagem foi enviada com sucesso!"
+msgstr "* Your message was delivered successfully! "
+
+#: /Controller/WebpagesController.php:253
+msgid "* Name, e-mail and description required!"
+msgstr "* Name, e-mail and description required!"
+
+#: /View/Elements/breadcrumb.ctp:7 /View/Elements/navbar.ctp:27
+msgid "Listings"
+msgstr "Listings"
+
+#: /View/Elements/breadcrumb.ctp:10 /View/Elements/navbar.ctp:40
+msgid "Contact Us"
+msgstr "Contact Us"
+
+#: /View/Elements/breadcrumb.ctp:13
+msgid "Details"
+msgstr "Details"
+
+#: /View/Elements/breadcrumb.ctp:16
+msgid "Agent Details"
+msgstr "Agent Details"
+
+#: /View/Elements/breadcrumb.ctp:21 /View/Elements/navbar.ctp:24
+msgid "Home"
+msgstr "Home"
+
+#: /View/Elements/btn_submit.ctp:1
+msgid "Send"
+msgstr "Send"
+
+#: /View/Elements/footer.ctp:12 /View/Webpages/contact_us.ctp:22
+msgid "Contact Info"
+msgstr "Contact Info"
+
+#: /View/Elements/footer.ctp:29
+msgid "Newsletter"
+msgstr "Newsletter"
+
+#: /View/Elements/footer.ctp:30
+msgid "* Receive news of our site."
+msgstr "* Receive news of our site."
+
+#: /View/Elements/footer.ctp:32 /View/Webpages/agent_details.ctp:82
+#: /View/Webpages/contact_us.ctp:58
+msgid "E-mail"
+msgstr "E-mail"
+
+#: /View/Elements/footer.ctp:33
+msgid "Submit"
+msgstr "Submit"
+
+#: /View/Elements/navbar.ctp:44
+msgid "Languages"
+msgstr "Languages"
+
+#: /View/Elements/navbar.ctp:47
+msgid "Portuguese"
+msgstr "Portuguese"
+
+#: /View/Elements/navbar.ctp:50
+msgid "English"
+msgstr "English"
+
+#: /View/Elements/paginator.ctp:7
+msgid ""
+"Page {:page} of {:pages}, showing {:current} records out of {:count} total, "
+"starting on record {:start}, ending on {:end}"
+msgstr ""
+"Page {:page} of {:pages}, showing {:current} records out of {:count} total, "
+"starting on record {:start}, ending on {:end}"
+
+#: /View/Elements/paginator.ctp:20
+msgid "<i class=\"fa fa-angle-left\"></i>"
+msgstr "<i class=\"fa fa-angle-left\"></i>"
+
+#: /View/Elements/paginator.ctp:30
+msgid "<i class=\"fa fa-angle-right\"></i>"
+msgstr "<i class=\"fa fa-angle-right\"></i>"
+
+#: /View/Elements/search.ctp:6
+msgid "Property type"
+msgstr "Property type"
+
+#: /View/Elements/search.ctp:8;20;37;74;111;136
+msgid "Any"
+msgstr "Any"
+
+#: /View/Elements/search.ctp:18
+msgid "Locations"
+msgstr "Locations"
+
+#: /View/Elements/search.ctp:35
+msgid "Bathrooms"
+msgstr "Bathrooms"
+
+#: /View/Elements/search.ctp:72
+msgid "Bedrooms"
+msgstr "Bedrooms"
+
+#: /View/Elements/search.ctp:109
+msgid "Min Price"
+msgstr "Min Price"
+
+#: /View/Elements/search.ctp:134
+msgid "Max Price"
+msgstr "Max Price"
+
+#: /View/Elements/search.ctp:155
+msgid "Search"
+msgstr "Search"
+
+#: /View/Layouts/website.ctp:154
+msgid "Website by"
+msgstr "Website by"
+
+#: /View/Webpages/agent_details.ctp:74 /View/Webpages/details.ctp:212
+msgid "Your email address will not be published."
+msgstr "Your email address will not be published."
+
+#: /View/Webpages/agent_details.ctp:78 /View/Webpages/contact_us.ctp:56
+msgid "Name"
+msgstr "Name"
+
+#: /View/Webpages/agent_details.ctp:85 /View/Webpages/contact_us.ctp:61
+msgid "Website"
+msgstr "Website"
+
+#: /View/Webpages/contact_us.ctp:25
+msgid ""
+"* You can contact us via e-mail, phone or by using our form. We will respond "
+"within 24h during week days!"
+msgstr ""
+"* You can contact us via e-mail, phone or by using our form. We will respond "
+"within 24h during week days!"
+
+#: /View/Webpages/contact_us.ctp:52
+msgid "Get in touch"
+msgstr "Contact Us"
+
+#: /View/Webpages/contact_us.ctp:67
+msgid "Message"
+msgstr "Message"
+
+#: /View/Webpages/details.ctp:193
+msgid "View full profile"
+msgstr "View full profile"
+
+#: /View/Webpages/details.ctp:200
+msgid "Leave a comment"
+msgstr "Leave a comment"
+
+#: /View/Webpages/details.ctp:204
+msgid "Add your comment"
+msgstr "Add your comment"
+
+#: /View/Webpages/details.ctp:207
+msgid "Cancel Reply"
+msgstr "Cancel Reply"

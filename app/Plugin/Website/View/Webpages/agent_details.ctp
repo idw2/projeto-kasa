@@ -71,18 +71,18 @@
                         <div id="respond" class="comment-respond">
                             <h3 id="reply-title" class="comment-reply-title">Add your comment <small><a rel="nofollow" id="cancel-comment-reply-link" href="index.html#respond" style="display:none;">Cancel Reply</a></small></h3>
                             <form action="http://sweethome.marstheme.com/wp-comments-post.php" method="post" id="commentform" class="contact-form" novalidate="">
-                                <p class="comment-notes">Your email address will not be published.</p>							
+                                <p class="comment-notes"><?php echo __("Your email address will not be published."); ?></p>							
                                 <div class="row">
                                     <div class="col-sm-12">
 
-                                        <input type="text" id="author" name="author" placeholder="Name">		
+                                        <input type="text" id="author" name="author" placeholder="<?php echo __("Name"); ?>">		
                                     </div>
 
                                     <div class="col-sm-12">
-                                        <input type="text" id="email" name="email" placeholder="e-mail"></div>
+                                        <input type="text" id="email" name="email" placeholder="<?php echo __("E-mail"); ?>"></div>
 
                                     <div class="col-sm-12">
-                                        <input type="text" id="url" name="url" placeholder="website"></div>
+                                        <input type="text" id="url" name="url" placeholder="<?php echo __("Website"); ?>"></div>
 
 
                                     <div class="col-sm-12">

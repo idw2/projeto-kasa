@@ -120,3 +120,5 @@ CakePlugin::load('Admin', array('bootstrap' => false, 'routes' => false));
 CakePlugin::load('UploadPack');
 
 CakePlugin::load('Website', array('bootstrap' => false, 'routes' => false));
+
+Configure::write('I18n.Website', true);

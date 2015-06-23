@@ -3,25 +3,82 @@
         <div class="pull-left page-title">
             <h2>Contact Us</h2>
         </div>
-        
         <?php echo $this->element("Website.breadcrumb"); ?>
-        
     </div>
 </div>
-<div class="container">
-    <div class="pull-left page-title">
-        <h2>Contact Us</h2>
-    </div>
-    <div class="pull-right breadcrumb">
-        <!-- Breadcrumb NavXT 5.2.0 -->
-        <a title="Go to SweetHome." href="<?php echo $this->base ?>/website/website/index.html" class="home">SweetHome</a><span class="fa fa-arrow-circle-right sep"></span>Contact Us			</div>
-</div>
+
 
 <?php echo $this->element("Website.search"); ?>
 
-<div class="content-section">
+<div class="content-section page-template-template-contact-php">
     <div class="container">
         <div id="pl-20">
+
+
+            <div class="panel-grid" id="pg-20-1">
+
+                <div class="panel-grid-cell col-sm-6" id="pgc-20-1-0">
+                    <div class="so-panel widget widget_footer-contact-info panel-first-child panel-last-child" id="panel-20-1-0-0">
+                        <h3 class="widget-title"><?php echo __("Contact Info");?></h3>						
+                        <p class="info">
+                            <?php 
+                                echo __("* You can contact us via e-mail, phone or by using our form. We will respond within 24h during week days!");
+                            ?>
+                        </p>
+                        <p class="website-email">
+                            <a href="mailto:<?php echo __($structure['Structure']['email']); ?>"><i class="fa fa-envelope"></i> <?php echo __($structure['Structure']['email']); ?></a>
+                        </p>
+                        <p class="website-number">
+                            <i class="fa fa-phone"></i> <?php echo __($structure['Structure']['phone']); ?>			
+                        </p>
+                        <p class="website-fax">
+                            <i class="fa fa-print"></i> <?php echo __($structure['Structure']['fax']); ?>			
+                        </p>
+                    </div>
+                </div>
+
+                <div class="panel-grid-cell col-sm-6" id="pgc-20-1-1">
+
+                    <div class="widget widget_contact-form-wrapper panel-first-child panel-last-child contact-form-wrapper">			
+                        <div class="inner-wrapper">
+                            
+                            <?php echo $this->element("Admin.flash"); ?>
+                            
+                            <?php
+                            echo $this->Form->create('Email', array('class' => 'contact-form', 'inputDefaults' => array(
+                                    'div' => false,
+                                    'label' => false
+                            )));
+                            ?> 
+
+                            <fieldset>
+                                <h4 class="box-title"><?php echo __('Get in touch'); ?></h4>
+                                <div class="contact-form-left">
+
+                                    <span><i class="fa fa-user"></i></span>
+                                    <?php echo $this->Form->input('name', array('type' => 'text', 'placeholder' => __('Name'))); ?>
+                                    <span><i class="fa fa-envelope-o"></i></span>
+                                    <?php echo $this->Form->input('email', array('type' => 'text', 'placeholder' => __('E-mail'))); ?>
+<!--                                    <span><i class="fa fa-link"></i></span>-->
+                                    <?php
+                                    echo $this->Form->input('website', array('type' => 'hidden', 'placeholder' => __('Website')));
+                                    ?>
+                                </div>
+
+                                <div class="contact-form-right">
+                                    <?php
+                                    echo $this->Form->input('description', array('type' => 'textarea', 'placeholder' => __('Message')));
+                                    ?>
+                                    <?php echo $this->element("Website.btn_submit"); ?>
+                                </div>
+                            </fieldset>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>			
+
             <div class="panel-grid" id="pg-20-0">
                 <div class="panel-grid-cell" id="pgc-20-0-0">
                     <div class="so-panel widget widget_swh-googlemap panel-first-child panel-last-child" id="panel-20-0-0-0">			
@@ -40,39 +97,8 @@
                                 })
                             })(jQuery);
                         </script>
-                    </div></div></div><div class="panel-grid" id="pg-20-1"><div class="panel-grid-cell" id="pgc-20-1-0"><div class="so-panel widget widget_footer-contact-info panel-first-child panel-last-child" id="panel-20-1-0-0"><h3 class="widget-title">Contact Info</h3>						<p class="info">
-                            This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit.
+                    </div></div></div>
 
-                            Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu ad			</p>			
-                        <p class="website-number">
-                            <i class="fa fa-phone"></i>  +399 (500) 321 9548			</p>
-                        <p class="website-email">
-                            <a href="mailto:info@marstheme.com"><i class="fa fa-envelope"></i> info@marstheme.com</a>
-                        </p>
-                        <p class="website-fax">
-                            <i class="fa fa-print"></i> +399 (500) 321 9548			</p>
-                    </div></div><div class="panel-grid-cell" id="pgc-20-1-1"><div class="so-panel widget widget_contact-form-wrapper panel-first-child panel-last-child contact-form-wrapper" id="panel-20-1-1-0">				<div class="inner-wrapper">
-                            <h4 class="box-title">Get in touch</h4>
-                            <form class="contact-form" method="POST">
-                                <div class="contact-form-left">
-                                    <span><i class="fa fa-user"></i></span><input type="text" name="name" placeholder="Name" id="name">
-                                    <span><i class="fa fa-envelope-o"></i></span><input type="text" name="email" placeholder="e-mail" id="email">
-                                    <span><i class="fa fa-link"></i></span><input type="text" name="website" placeholder="website" id="website">
-                                </div>
-                                <div class="contact-form-right">
-                                    <textarea id="message" name="message" placeholder="Message"></textarea>
-                                    <input type="hidden" id="action" name="action" value="swh_contactform_act">
-                                    <input type="submit" value="send message" id="submit-btn">
-                                </div>
-                                <input type="hidden" id="swh_contactform" name="swh_contactform" value="ee0f41512b"><input type="hidden" name="_wp_http_referer" value="/contact-us/">					</form>
-                            <div class="clearfix"></div>
-                            <div style="display: none;" class="alert"></div>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>			
         </div>
     </div>
     <!-- footer-section -->

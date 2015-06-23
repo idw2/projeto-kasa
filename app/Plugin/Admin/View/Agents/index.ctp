@@ -1,5 +1,6 @@
 <div class="col col-sm-12">
 
+    <?php echo $this->element("Admin.language"); ?>
     <div>
         <?php echo $this->Html->link(__('New Agent'), array('action' => 'add'), array('class' => 'btn btn-default')); ?>     
     </div>
@@ -12,6 +13,7 @@
                     <th>#</th>
                     <th><?php echo $this->Paginator->sort('created'); ?></th>
                     <th><?php echo $this->Paginator->sort('modified'); ?></th>
+                    <th><?php echo $this->Paginator->sort('language'); ?></th>
                     <th><?php echo $this->Paginator->sort('name'); ?></th>
                     <th><?php echo $this->Paginator->sort('email'); ?></th>
                     <th><?php echo $this->Paginator->sort('phone'); ?></th>
@@ -45,6 +47,7 @@
                         <td><?php echo $this->Upload->uploadImage($agent['Agent'], 'Agent.photo', array('style' => 'thumb'), array('class' => 'img-thumbnail')); ?>&nbsp;</td>
                         <td><?php echo $this->Lib->date_format(h($agent['Agent']['created'])); ?>&nbsp;</td>
                         <td><?php echo $this->Lib->date_format(h($agent['Agent']['modified'])); ?>&nbsp;</td>
+                        <td><?php echo h($agent['Agent']['language']); ?>&nbsp;</td>
                         <td><?php echo h($agent['Agent']['name']); ?>&nbsp;</td>
                         <td><?php echo h($agent['Agent']['email']); ?>&nbsp;</td>
                         <td><?php echo h($agent['Agent']['phone']); ?>&nbsp;</td>

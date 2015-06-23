@@ -1,4 +1,6 @@
 <div class="col col-sm-12 col-md-12 col-lg-12">
+    
+    <?php echo $this->element("Admin.language"); ?>
     <div>
         <?php echo $this->Html->link(__('New Banner'), array('action' => 'add'), array('class' => 'btn btn-default')); ?>
     </div>
@@ -18,6 +20,7 @@
                     <th>#</th>
                     <th><?php echo $this->Paginator->sort('created'); ?></th>
                     <th><?php echo $this->Paginator->sort('modified'); ?></th>
+                    <th><?php echo $this->Paginator->sort('language'); ?></th>
                     <th><?php echo $this->Paginator->sort('photo_file_name'); ?></th>
                     <th><?php echo $this->Paginator->sort('status'); ?></th>
                     <th><?php echo $this->Paginator->sort('position'); ?></th>
@@ -48,6 +51,7 @@
                         <td><?php echo $this->Upload->uploadImage($banner['Banner'], 'Banner.photo', array('style' => 'thumb'), array('class' => 'img-thumbnail')); ?>&nbsp;</td>
                         <td><?php echo $this->Lib->date_format(h($banner['Banner']['created'])); ?>&nbsp;</td>
                         <td><?php echo $this->Lib->date_format(h($banner['Banner']['modified'])); ?>&nbsp;</td>
+                        <td><?php echo h($banner['Banner']['language']); ?>&nbsp;</td>
                         <td><?php echo h($banner['Banner']['photo_file_name']); ?>&nbsp;</td>
                         <td  class="text-center">
                             <?php if ($banner['Banner']['status']): ?>

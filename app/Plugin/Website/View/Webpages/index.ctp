@@ -1,4 +1,4 @@
-<?php #pr($recents);                ?>
+<?php #pr($recents);                   ?>
 <?php if (sizeof($banners) != 0): ?>
 
     <div class="main-flexslider">
@@ -38,7 +38,11 @@
             <div style="margin-bottom:0px;" class="recent-listings recent-listings-6039">
                 <div class="container">
                     <div class="title-box">
-                        <h3>Recent Listings</h3>
+                        <?php if ($this->Session->read('Config.language') == "eng"): ?>
+                            <h3><?php echo __('Recent Listings'); ?></h3>
+                        <?php else: ?>
+                            <h3><?php echo __('Recentes'); ?></h3>
+                        <?php endif; ?>
                         <div class="bordered"></div>
                     </div>
                     <div class="row listings-items-wrapper">
@@ -94,7 +98,11 @@
             <div  class="recent-listings recent-listings-4055">
                 <div class="container">
                     <div class="title-box">
-                        <h3>Featured Listings</h3>
+                        <?php if ($this->Session->read('Config.language') == "eng"): ?>
+                            <h3><?php echo __('Featured Listings'); ?></h3>
+                        <?php else: ?>
+                            <h3><?php echo __('Imóveis em Destaque'); ?></h3>
+                        <?php endif; ?>
                         <div class="bordered"></div>
                     </div>
                     <div class="row listings-items-wrapper">
@@ -151,7 +159,11 @@
 
                 <div class="container">
                     <div class="title-box">
-                        <h3>Our agents</h3>
+                        <?php if ($this->Session->read('Config.language') == "eng"): ?>
+                            <h3><?php echo __('Our agents'); ?></h3>
+                        <?php else: ?>
+                            <h3><?php echo __('Nossos Agentes'); ?></h3>
+                        <?php endif; ?>
                         <div class="bordered"></div>
                     </div>
                     <div class="owl-carousel agents-slider">

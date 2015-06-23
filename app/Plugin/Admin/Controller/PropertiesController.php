@@ -28,6 +28,15 @@ class PropertiesController extends AdminAppController {
      */
     public function index() {
         $this->Property->recursive = 0;
+        
+        
+        $this->paginate = array(
+            'fields' => array('`Property`.*'),
+            'conditions' => array("`Property`.`language` = '{$this->Session->read('Config.language')}'"),
+            'order' => array('Property.created DESC'),
+            'limit' => 26
+        );
+        
         $this->set('properties', $this->Paginator->paginate());
     }
 
