@@ -10,7 +10,7 @@
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <meta name="description" content="">
         <meta name="author" content="">
-        <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+        <link rel="icon" href="<?php echo $this->Html->url('/admin/img/logo_kasa_color.png'); ?>">
 
         <title>Signin Template for Bootstrap</title>
 

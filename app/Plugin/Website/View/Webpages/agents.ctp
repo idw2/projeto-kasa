@@ -3,9 +3,9 @@
         <div class="pull-left page-title">
             <h2>Our agents</h2>
         </div>
-        
-        <?php echo $this->element("Website.breadcrumb"); ?>
-        
+        <div class="pull-right breadcrumb">
+            <!-- Breadcrumb NavXT 5.2.0 -->
+            <a title="Go to SweetHome." href="<?php echo $this->base ?>/website/website/index.html" class="home">SweetHome</a><span class="fa fa-arrow-circle-right sep"></span><a title="Go to News." href="<?php echo $this->base ?>/website/website/news/index.html">News</a><span class="fa fa-arrow-circle-right sep"></span>Agents			</div>
     </div>
 </div>
 
@@ -161,7 +161,8 @@
                     <p class="person-number">
                         <i class="fa fa-phone"></i> 900 123 456 789		</p>
                     <p class="person-email">
-                        <i class="fa fa-envelope"></i> robbhatman@sweethome.com		</p>
+                        <i class="fa fa-envelope"></i> robbhatman@sweethome.com		
+                    </p>
                     <p class="person-fax">
                         <i class="fa fa-print"></i> 900 123 456 789		</p>
                     <a href="agent_details" class="gray-btn">View full profile</a>

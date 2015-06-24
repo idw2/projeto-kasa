@@ -25,8 +25,13 @@
                         <div id="details-slider" class="flexslider">
 
                             <a href="#" onclick="javascript: return false;" class="fa fa-building-o property-type-icon"></a>
-                            <a href="#" onclick="javascript: return false;" class="yellow-btn">$20,000</a>
-                            <a href="#" onclick="javascript: return false;" class="status">For Rent</a>
+                            <a href="#" onclick="javascript: return false;" class="yellow-btn">$<?php echo $property['Detail']['price']; ?></a>
+                            <?php if ($this->Session->read('Config.language') == "eng"): ?>
+                                <a href="#" onclick="javascript: return false;" class="status"><?php echo __('For Rent'); ?></a>
+                            <?php else: ?>
+                                <a href="#" onclick="javascript: return false;" class="status"><?php echo __('À venda'); ?></a>
+                            <?php endif; ?>
+
 
                             <div class="flex-viewport" style="overflow: hidden; position: relative;">
                                 <ul class="slides" style="width: 1200%; -webkit-transition-duration: 0s; transition-duration: 0s; -webkit-transform: translate3d(0px, 0px, 0px); transform: translate3d(0px, 0px, 0px);">
@@ -89,14 +94,43 @@
                     <div class="property-desc">					
                         <h3><?php echo __($property['Property']['name']); ?></h3>
                         <ul class="slide-item-features item-features">
-                            <li><span class="fa fa-arrows-alt"></span><?php echo __($property['Detail']['area']); ?> Sq Ft</li>
-                            <li><span class="fa fa-male"></span><?php echo __($property['Detail']['bathrooms']); ?>  Bathrooms</li>
-                            <li><span class="fa fa-inbox"></span><?php echo __($property['Detail']['bedrooms']); ?> Bedrooms</li>
-                            <li><span class="fa fa-truck"></span><?php echo __($property['Detail']['garages']); ?> Garages</li>
+                            <li><span class="fa fa-arrows-alt"></span><?php echo __($property['Detail']['area']); ?> 
+                                <?php if ($this->Session->read('Config.language') == "eng"): ?>
+                                    <?php echo __('Sq Ft'); ?>
+                                <?php else: ?>
+                                    <?php echo __('Área'); ?>
+                                <?php endif; ?>
+                            </li>
+                            <li><span class="fa fa-male"></span><?php echo __($property['Detail']['bathrooms']); ?>  
+                                <?php if ($this->Session->read('Config.language') == "eng"): ?>
+                                    <?php echo __('Bathrooms'); ?>
+                                <?php else: ?>
+                                    <?php echo __('Banheiros'); ?>
+                                <?php endif; ?>                                
+                            </li>
+                            <li><span class="fa fa-inbox"></span><?php echo __($property['Detail']['bedrooms']); ?> 
+                                <?php if ($this->Session->read('Config.language') == "eng"): ?>
+                                    <?php echo __('Bedrooms'); ?>
+                                <?php else: ?>
+                                    <?php echo __('Quartos'); ?>
+                                <?php endif; ?>                                
+                            </li>
+                            <li><span class="fa fa-truck"></span><?php echo __($property['Detail']['garages']); ?> 
+                                <?php if ($this->Session->read('Config.language') == "eng"): ?>
+                                    <?php echo __('Garages'); ?>
+                                <?php else: ?>
+                                    <?php echo __('Vagas'); ?>
+                                <?php endif; ?> 
+
+                            </li>
                         </ul>
                         <?php echo __($property['Property']['description']); ?>
                         <div class="property-location">
-                            <h3>Property Location</h3>
+                            <?php if ($this->Session->read('Config.language') == "eng"): ?>
+                                <h3><?php echo __('Property Location'); ?></h3>
+                            <?php else: ?>
+                                <h3><?php echo __('Localização'); ?></h3>
+                            <?php endif; ?>
 
                             <input id="addressinput" type="hidden" style="width: 447px" value="<?php echo $property['Location']['address']; ?>"/>
                             <input id="Button1" type="hidden" value="Find" onclick="return Button1_onclick()" /></td>
@@ -158,8 +192,14 @@
 
             </div>
             <div class="col-md-4 blog-sidebar">
-                <div id="swh-widget-agent-3" class="sidebar-widget author-profile"><h4 class="widget-title">Listed By</h4>			<div class="image-box">
+                <div id="swh-widget-agent-3" class="sidebar-widget author-profile">
+                    <?php if ($this->Session->read('Config.language') == "eng"): ?>
+                        <h4 class="widget-title"><?php echo __('Agent'); ?></h4>
+                    <?php else: ?>
+                        <h4 class="widget-title"><?php echo __('Corretor'); ?></h4>			
+                    <?php endif; ?>
 
+                    <div class="image-box">
                         <?php
                         $extensao = strtolower(pathinfo($property['Agent']['photo_file_name'], PATHINFO_EXTENSION));
                         $_image_name = explode(".{$extensao}", $property['Agent']['photo_file_name']);
@@ -183,18 +223,27 @@
                     </div>
                     <div class="desc-box">
                         <h4><?php echo $property['Agent']['name']; ?></h4>
-                        <p class="person-number">
-                            <i class="fa fa-phone"></i> <?php echo __($property['Agent']['phone']); ?>												
-                        </p>
-                        <p class="person-email">
-                            <i class="fa fa-mobile"></i> <?php echo __($property['Agent']['cell_phone']); ?>												
-                        </p>
-                        <p class="person-email">
-                            <i class="fa fa-envelope"></i> <?php echo __($property['Agent']['email']); ?>				
-                        </p>
-                        <p class="person-fax">
-                            <i class="fa fa-print"></i> <?php echo __($property['Agent']['fax']); ?>				
-                        </p>
+
+                        <?php if ($property['Agent']['phone'] != ""): ?>
+                            <p class="person-number">
+                                <i class="fa fa-phone"></i> <?php echo __($property['Agent']['phone']); ?>												
+                            </p>
+                        <?php endif; ?>
+                        <?php if ($property['Agent']['cell_phone'] != ""): ?>
+                            <p class="person-email">
+                                <i class="fa fa-mobile"></i> <?php echo __($property['Agent']['cell_phone']); ?>												
+                            </p>
+                        <?php endif; ?>
+                        <?php if ($property['Agent']['email'] != ""): ?>
+                            <p class="person-email">
+                                <i class="fa fa-envelope"></i> <?php echo __($property['Agent']['email']); ?>				
+                            </p>
+                        <?php endif; ?>
+                        <?php if ($property['Agent']['fax'] != ""): ?>
+                            <p class="person-fax">
+                                <i class="fa fa-print"></i> <?php echo __($property['Agent']['fax']); ?>				
+                            </p>
+                        <?php endif; ?>
                         <a href="<?php echo $this->base ?>/agent_details/<?php echo $property['Agent']['url']; ?>" class="gray-btn"><?php echo __("View full profile"); ?></a>
                     </div>		
                 </div>
@@ -218,7 +267,7 @@
                                 <?php if ($this->Session->read('erro_comments')): ?>
                                     <?php echo $this->element("Admin.flash"); ?>
                                 <?php endif; ?>
-                                
+
                                 <p class="comment-notes">
                                     <?php echo __("Your email address will not be published."); ?>
                                 </p>							
@@ -238,11 +287,20 @@
 
                                     <div class="col-sm-12">
                                         <textarea id="comment" name="comment" placeholder="<?php echo __('Message'); ?>"></textarea>
-                                        <input type="submit" value="Send message">
+                                        <?php if ($this->Session->read('Config.language') == "eng"): ?>
+                                            <input type="submit" value="Send message">
+                                        <?php else: ?>
+                                            <input type="submit" value="Enviar mensagem">
+                                        <?php endif; ?>
                                     </div>				                      
                                 </div>
                                 <p class="form-submit">
-                                    <input name="submit" type="submit" id="submit" class="" value="<?php echo __('Send message'); ?>"> 
+                                    <?php if ($this->Session->read('Config.language') == "eng"): ?>
+                                        <input name="submit" type="submit" id="submit" class="" value="<?php echo __('Send message'); ?>"> 
+                                    <?php else: ?>
+                                        <input name="submit" type="submit" id="submit" class="" value="<?php echo __('Enviar Mensagem'); ?>"> 
+                                    <?php endif; ?>
+
                                     <input type="hidden" name="comment_post_ID" value="112" id="comment_post_ID">
                                     <input type="hidden" name="comment_parent" id="comment_parent" value="0">
                                 </p>
@@ -265,7 +323,11 @@
 
 
                 <div id="swh-widget-property-4" class="sidebar-widget similar-listings-widget">
-                    <h4 class="widget-title">Similar Listings</h4>			
+                    <?php if ($this->Session->read('Config.language') == "eng"): ?>
+                        <h4 class="widget-title"><?php echo __("Featured"); ?></h4>
+                    <?php else: ?>
+                        <h4 class="widget-title"><?php echo __("Destaque"); ?></h4>
+                    <?php endif; ?>			
                     <ul class="similar-listings">
                         <?php foreach ($listings as $list): ?>
 

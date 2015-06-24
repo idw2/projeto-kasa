@@ -31,7 +31,7 @@ class BannersController extends AdminAppController {
         $this->paginate = array(
             'fields' => array('`Banner`.*'),
             'conditions' => array("`Banner`.`language` = '{$this->Session->read('Config.language')}'"),
-            'order' => array('Banner.created DESC'),
+            'order' => array('Banner.position' => 'ASC'),
             'limit' => 26
         );
         

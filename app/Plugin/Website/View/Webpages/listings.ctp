@@ -39,21 +39,45 @@
                             <?php endif; ?>
 
                             <?php if ($recent['Property']['featured']): ?>
-                                <a href="<?php echo $this->base ?>/details/<?php echo $recent['Property']['url']; ?>" class="featured"><i class="fa fa-star"></i>featured</a>
+                                <a href="<?php echo $this->base ?>/details/<?php echo $recent['Property']['url']; ?>" class="featured">
+                                    <?php if ($this->Session->read('Config.language') == "eng"): ?>
+                                        <i class="fa fa-star"></i><?php echo __('featured'); ?>
+                                    <?php else: ?>
+                                        <i class="fa fa-star"></i><?php echo __('destaque'); ?>
+                                    <?php endif; ?>
+                                </a>
                             <?php endif; ?>
                         </div>			
                         <div class="desc-box">
                             <h4><a href="<?php echo $this->base ?>/details/<?php echo $recent['Property']['url']; ?>"><?php echo $recent['Property']['name'] ?></a></h4>
                             <ul class="slide-item-features item-features">
-                                <li><span class="fa fa-arrows-alt"></span><?php echo $recent['Detail']['area']; ?> Sq Ft</li>
-                                <li><span class="fa fa-male"></span><?php echo $recent['Detail']['bathrooms']; ?>  Bathrooms</li>
-                                <li><span class="fa fa-inbox"></span><?php echo $recent['Detail']['bedrooms']; ?> Bedrooms</li>
+                                <li><span class="fa fa-arrows-alt"></span><?php echo __($recent['Detail']['area']); ?> 
+                                    <?php if ($this->Session->read('Config.language') == "eng"): ?>
+                                        <?php echo __('Sq Ft'); ?>
+                                    <?php else: ?>
+                                        <?php echo __('Área'); ?>
+                                    <?php endif; ?>
+                                </li>
+                                <li><span class="fa fa-male"></span><?php echo __($recent['Detail']['bathrooms']); ?>  
+                                    <?php if ($this->Session->read('Config.language') == "eng"): ?>
+                                        <?php echo __('Bathrooms'); ?>
+                                    <?php else: ?>
+                                        <?php echo __('Banheiros'); ?>
+                                    <?php endif; ?>                                
+                                </li>
+                                <li><span class="fa fa-inbox"></span><?php echo __($recent['Detail']['bedrooms']); ?> 
+                                    <?php if ($this->Session->read('Config.language') == "eng"): ?>
+                                        <?php echo __('Bedrooms'); ?>
+                                    <?php else: ?>
+                                        <?php echo __('Quartos'); ?>
+                                    <?php endif; ?>                                
+                                </li>
                             </ul>
                             <div class="buttons-wrapper">
                                 <a href="<?php echo $this->base ?>/details/<?php echo $recent['Property']['url']; ?>" class="yellow-btn">$<?php echo $recent['Detail']['price']; ?></a>
                                 <a href="<?php echo $this->base ?>/details/<?php echo $recent['Property']['url']; ?>" class="gray-btn">
                                     <span class="fa fa-file-text-o"></span>
-                                    Details
+                                    <?php echo __('Details'); ?>
                                 </a>
                             </div>
                             <div class="clearfix">

@@ -3,9 +3,9 @@
         <div class="pull-left page-title">
             <h2><?php echo $agent['Agent']['name']; ?></h2>
         </div>
-        
+
         <?php echo $this->element("Website.breadcrumb"); ?>
-        
+
     </div>
 </div>
 
@@ -40,37 +40,51 @@
                     </div>
                     <div class="desc-box">
                         <h4><?php echo $agent['Agent']['name']; ?></h4>
-                        <p class="person-number">
-                            <i class="fa fa-phone"></i> <?php echo $agent['Agent']['phone']; ?>												
-                        </p>
-                        <p class="person-email">
-                            <i class="fa fa-mobile"></i> <?php echo $agent['Agent']['cell_phone']; ?>												
-                        </p>
-                        <p class="person-email">
-                            <i class="fa fa-envelope"></i> <?php echo $agent['Agent']['email']; ?>				
-                        </p>
-                        <p class="person-fax">
-                            <i class="fa fa-print"></i> <?php echo $agent['Agent']['fax']; ?>				
-                        </p>
-                        <!--<a href="<?php echo $this->base ?>/website/website/property/index4f30.html?ofagent=55" class="gray-btn">View all property</a>-->
+                        <?php if ($agent['Agent']['phone'] != ""): ?>
+                            <p class="person-number">
+                                <i class="fa fa-phone"></i> <?php echo __($agent['Agent']['phone']); ?>												
+                            </p>
+                        <?php endif; ?>
+                        <?php if ($agent['Agent']['cell_phone'] != ""): ?>
+                            <p class="person-email">
+                                <i class="fa fa-mobile"></i> <?php echo __($agent['Agent']['cell_phone']); ?>												
+                            </p>
+                        <?php endif; ?>
+                        <?php if ($agent['Agent']['email'] != ""): ?>
+                            <p class="person-email">
+                                <i class="fa fa-envelope"></i> <?php echo __($agent['Agent']['email']); ?>				
+                            </p>
+                        <?php endif; ?>
+                        <?php if ($agent['Agent']['fax'] != ""): ?>
+                            <p class="person-fax">
+                                <i class="fa fa-print"></i> <?php echo __($agent['Agent']['fax']); ?>				
+                            </p>
+                        <?php endif; ?>
                     </div>
-            
-                        <div class="clearfix"></div>
+
+                    <div class="clearfix"></div>
                     <div class="post-content">
                         <?php echo $agent['Agent']['description']; ?>
                     </div>
                 </div>													
-           
+
                 <div class="clearfix"></div>
             </div>
             <div class="col-md-4 blog-sidebar">
-                   <div class="contact-form-wrapper comment-form-wrapper sidebar-widget author-profile">
+                <div class="contact-form-wrapper comment-form-wrapper sidebar-widget author-profile">
                     <div>
-                        <h4 class="box-title">Leave a comment</h4>
+                        <h4 class="box-title"><?php echo __("Leave a comment"); ?></h4>
 
                         <div id="respond" class="comment-respond">
-                            <h3 id="reply-title" class="comment-reply-title">Add your comment <small><a rel="nofollow" id="cancel-comment-reply-link" href="index.html#respond" style="display:none;">Cancel Reply</a></small></h3>
-                            <form action="http://sweethome.marstheme.com/wp-comments-post.php" method="post" id="commentform" class="contact-form" novalidate="">
+                            <h3 id="reply-title" class="comment-reply-title">
+                                <?php echo __("Add your comment"); ?> 
+                                <small>
+                                    <a rel="nofollow" id="cancel-comment-reply-link" href="index.html#respond" style="display:none;">
+                                        <?php echo __("Cancel Reply"); ?>
+                                    </a>
+                                </small>
+                            </h3>
+                            <form action="<?php echo $this->base; ?>/comments" method="post" id="commentform" class="contact-form" novalidate="">
                                 <p class="comment-notes"><?php echo __("Your email address will not be published."); ?></p>							
                                 <div class="row">
                                     <div class="col-sm-12">
@@ -86,16 +100,36 @@
 
 
                                     <div class="col-sm-12">
-                                        <textarea id="comment" name="comment" placeholder="Message"></textarea>
-                                        <input type="submit" value="Send message">
+                                        <textarea id="comment" name="comment" placeholder="<?php echo __('Message'); ?>"></textarea>
+                                        <?php if ($this->Session->read('Config.language') == "eng"): ?>
+                                            <input type="submit" value="Send message">
+                                        <?php else: ?>
+                                            <input type="submit" value="Enviar mensagem">
+                                        <?php endif; ?>
                                     </div>				                      
                                 </div>
-                                <p class="form-submit"><input name="submit" type="submit" id="submit" class="" value="Send message"> <input type="hidden" name="comment_post_ID" value="112" id="comment_post_ID">
+<!--                                <p class="form-submit">
+                                    <input name="submit" type="submit" id="submit" class="" value="Send message"> 
+                                    <input type="hidden" name="comment_post_ID" value="112" id="comment_post_ID">
                                     <input type="hidden" name="comment_parent" id="comment_parent" value="0">
-                                </p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="093d7beeb1"></p><p class="comment-subscription-form"><input type="checkbox" name="subscribe_comments" id="subscribe_comments" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;"> <label class="subscribe-label" id="subscribe-label" for="subscribe_comments">Notify me of follow-up comments by email.</label></p><p class="comment-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;"> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog">Notify me of new posts by email.</label></p><p style="display: none;"></p>					<input type="hidden" id="ak_js" name="ak_js" value="1434482549136"></form>
+                                </p>
+                                <p style="display: none;">
+                                <input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="093d7beeb1">
+                                </p>
+                                <p class="comment-subscription-form">
+                                    <input type="checkbox" name="subscribe_comments" id="subscribe_comments" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;"> 
+                                    <label class="subscribe-label" id="subscribe-label" for="subscribe_comments">Notify me of follow-up comments by email.</label>
+                                </p>
+                                <p class="comment-subscription-form">
+                                    <input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;"> 
+                                    <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog">Notify me of new posts by email.</label>
+                                </p>
+                                <p style="display: none;">
+                                        
+                                </p>					
+                                <input type="hidden" id="ak_js" name="ak_js" value="1434482549136">-->
+                            </form>
                         </div><!-- #respond -->
-
-
                     </div>
                 </div>
             </div>		

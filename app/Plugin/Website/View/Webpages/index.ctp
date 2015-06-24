@@ -1,4 +1,4 @@
-<?php #pr($recents);                   ?>
+<?php #pr($recents);                       ?>
 <?php if (sizeof($banners) != 0): ?>
 
     <div class="main-flexslider">
@@ -15,14 +15,39 @@
                         <h2><?php echo $banner['Property']['name'] ?></h2>
                         <p><?php echo $banner['Banner']['description'] ?></p>								
                         <ul class="slide-item-features">
-                            <li><span class="fa fa-arrows-alt"></span><?php echo $banner['Detail']['area']; ?> Sq Ft</li>
-                            <li><span class="fa fa-male"></span><?php echo $banner['Detail']['bathrooms']; ?>  Bathrooms</li>
-                            <li><span class="fa fa-inbox"></span><?php echo $banner['Detail']['bedrooms']; ?> Bedrooms</li>
-                            <li><span class="fa fa-truck"></span><?php echo $banner['Detail']['garages']; ?> Garages</li>
+
+                            <li><span class="fa fa-arrows-alt"></span><?php echo __($banner['Detail']['area']); ?> 
+                                <?php if ($this->Session->read('Config.language') == "eng"): ?>
+                                    <?php echo __('Sq Ft'); ?>
+                                <?php else: ?>
+                                    <?php echo __('Área'); ?>
+                                <?php endif; ?>
+                            </li>
+                            <li><span class="fa fa-male"></span><?php echo __($banner['Detail']['bathrooms']); ?>  
+                                <?php if ($this->Session->read('Config.language') == "eng"): ?>
+                                    <?php echo __('Bathrooms'); ?>
+                                <?php else: ?>
+                                    <?php echo __('Banheiros'); ?>
+                                <?php endif; ?>                                
+                            </li>
+                            <li><span class="fa fa-inbox"></span><?php echo __($banner['Detail']['bedrooms']); ?> 
+                                <?php if ($this->Session->read('Config.language') == "eng"): ?>
+                                    <?php echo __('Bedrooms'); ?>
+                                <?php else: ?>
+                                    <?php echo __('Quartos'); ?>
+                                <?php endif; ?>                                
+                            </li>
+                            <li><span class="fa fa-truck"></span><?php echo __($banner['Detail']['garages']); ?> 
+                                <?php if ($this->Session->read('Config.language') == "eng"): ?>
+                                    <?php echo __('Garages'); ?>
+                                <?php else: ?>
+                                    <?php echo __('Vagas'); ?>
+                                <?php endif; ?> 
+                            </li>
                         </ul>
                         <div class="slider-buttons-wrapper">
                             <a href="<?php echo $this->base ?>/details/<?php echo $banner['Property']['url']; ?>" class="yellow-btn">$<?php echo $banner['Detail']['price']; ?></a>
-                            <a href="<?php echo $this->base ?>/details/<?php echo $banner['Property']['url']; ?>" class="gray-btn"><span class="fa fa-file-text-o"></span>Details</a>
+                            <a href="<?php echo $this->base ?>/details/<?php echo $banner['Property']['url']; ?>" class="gray-btn"><span class="fa fa-file-text-o"></span><?php echo __('Details'); ?></a>
                         </div>
                     </div>
                 </li>
@@ -66,21 +91,45 @@
                                         <?php endif; ?>
 
                                         <?php if ($recent['Property']['featured']): ?>
-                                            <a href="<?php echo $this->base ?>/details/<?php echo $recent['Property']['url']; ?>" class="featured"><i class="fa fa-star"></i>featured</a>
+                                            <a href="<?php echo $this->base ?>/details/<?php echo $recent['Property']['url']; ?>" class="featured">
+                                                <?php if ($this->Session->read('Config.language') == "eng"): ?>
+                                                    <i class="fa fa-star"></i><?php echo __('featured'); ?>
+                                                <?php else: ?>
+                                                    <i class="fa fa-star"></i><?php echo __('destaque'); ?>
+                                                <?php endif; ?>
+                                            </a>
                                         <?php endif; ?>
                                     </div>			
                                     <div class="desc-box">
                                         <h4><a href="<?php echo $this->base ?>/details/<?php echo $recent['Property']['url']; ?>"><?php echo $recent['Property']['name'] ?></a></h4>
                                         <ul class="slide-item-features item-features">
-                                            <li><span class="fa fa-arrows-alt"></span><?php echo $recent['Detail']['area']; ?> Sq Ft</li>
-                                            <li><span class="fa fa-male"></span><?php echo $recent['Detail']['bathrooms']; ?>  Bathrooms</li>
-                                            <li><span class="fa fa-inbox"></span><?php echo $recent['Detail']['bedrooms']; ?> Bedrooms</li>
+                                            <li><span class="fa fa-arrows-alt"></span><?php echo __($recent['Detail']['area']); ?> 
+                                                <?php if ($this->Session->read('Config.language') == "eng"): ?>
+                                                    <?php echo __('Sq Ft'); ?>
+                                                <?php else: ?>
+                                                    <?php echo __('Área'); ?>
+                                                <?php endif; ?>
+                                            </li>
+                                            <li><span class="fa fa-male"></span><?php echo __($recent['Detail']['bathrooms']); ?>  
+                                                <?php if ($this->Session->read('Config.language') == "eng"): ?>
+                                                    <?php echo __('Bathrooms'); ?>
+                                                <?php else: ?>
+                                                    <?php echo __('Banheiros'); ?>
+                                                <?php endif; ?>                                
+                                            </li>
+                                            <li><span class="fa fa-inbox"></span><?php echo __($recent['Detail']['bedrooms']); ?> 
+                                                <?php if ($this->Session->read('Config.language') == "eng"): ?>
+                                                    <?php echo __('Bedrooms'); ?>
+                                                <?php else: ?>
+                                                    <?php echo __('Quartos'); ?>
+                                                <?php endif; ?>                                
+                                            </li>
                                         </ul>
                                         <div class="buttons-wrapper">
                                             <a href="<?php echo $this->base ?>/details/<?php echo $recent['Property']['url']; ?>" class="yellow-btn">$<?php echo $recent['Detail']['price']; ?></a>
                                             <a href="<?php echo $this->base ?>/details/<?php echo $recent['Property']['url']; ?>" class="gray-btn">
                                                 <span class="fa fa-file-text-o"></span>
-                                                Details
+                                                <?php echo __('Details'); ?>
                                             </a>
                                         </div>
                                         <div class="clearfix">
@@ -127,20 +176,44 @@
                                         <?php else: ?>
                                             <a href="<?php echo $this->base ?>/details/<?php echo $featured['Property']['url']; ?>" class="fa fa-home property-type-icon"></a>
                                         <?php endif; ?>
-                                        <a href="<?php echo $this->base ?>/details/<?php echo $featured['Property']['url']; ?>" class="featured"><i class="fa fa-star"></i>featured</a>
+                                        <a href="<?php echo $this->base ?>/details/<?php echo $featured['Property']['url']; ?>" class="featured">
+                                            <?php if ($this->Session->read('Config.language') == "eng"): ?>
+                                                <i class="fa fa-star"></i><?php echo __('featured'); ?>
+                                            <?php else: ?>
+                                                <i class="fa fa-star"></i><?php echo __('destaque'); ?>
+                                            <?php endif; ?>
+                                        </a>
                                     </div>			
                                     <div class="desc-box">
                                         <h4><a href="<?php echo $this->base ?>/details/<?php echo $featured['Property']['url']; ?>"><?php echo $featured['Property']['name'] ?></a></h4>
                                         <ul class="slide-item-features item-features">
-                                            <li><span class="fa fa-arrows-alt"></span><?php echo $featured['Detail']['area']; ?> Sq Ft</li>
-                                            <li><span class="fa fa-male"></span><?php echo $featured['Detail']['bathrooms']; ?>  Bathrooms</li>
-                                            <li><span class="fa fa-inbox"></span><?php echo $featured['Detail']['bedrooms']; ?> Bedrooms</li>
+                                            <li><span class="fa fa-arrows-alt"></span><?php echo __($featured['Detail']['area']); ?> 
+                                                <?php if ($this->Session->read('Config.language') == "eng"): ?>
+                                                    <?php echo __('Sq Ft'); ?>
+                                                <?php else: ?>
+                                                    <?php echo __('Área'); ?>
+                                                <?php endif; ?>
+                                            </li>
+                                            <li><span class="fa fa-male"></span><?php echo __($featured['Detail']['bathrooms']); ?>  
+                                                <?php if ($this->Session->read('Config.language') == "eng"): ?>
+                                                    <?php echo __('Bathrooms'); ?>
+                                                <?php else: ?>
+                                                    <?php echo __('Banheiros'); ?>
+                                                <?php endif; ?>                                
+                                            </li>
+                                            <li><span class="fa fa-inbox"></span><?php echo __($featured['Detail']['bedrooms']); ?> 
+                                                <?php if ($this->Session->read('Config.language') == "eng"): ?>
+                                                    <?php echo __('Bedrooms'); ?>
+                                                <?php else: ?>
+                                                    <?php echo __('Quartos'); ?>
+                                                <?php endif; ?>                                
+                                            </li>
                                         </ul>
                                         <div class="buttons-wrapper">
                                             <a href="<?php echo $this->base ?>/details/<?php echo $featured['Property']['url']; ?>" class="yellow-btn">$<?php echo $featured['Detail']['price']; ?></a>
                                             <a href="<?php echo $this->base ?>/details/<?php echo $featured['Property']['url']; ?>" class="gray-btn">
                                                 <span class="fa fa-file-text-o"></span>
-                                                Details
+                                                <?php echo __('Details'); ?>
                                             </a>
                                         </div>
                                         <div class="clearfix">
@@ -198,13 +271,27 @@
                                 </div>
                                 <div class="desc-box">
                                     <h4><?php echo $agent['Agent']['name']; ?></h4>
-                                    <p class="person-number">
-                                        <i class="fa fa-phone"></i> <?php echo $agent['Agent']['phone']; ?>		</p>
-                                    <p class="person-email">
-                                        <i class="fa fa-envelope"></i> <?php echo $agent['Agent']['email']; ?>		</p>
-                                    <p class="person-fax">
-                                        <i class="fa fa-print"></i> <?php echo $agent['Agent']['fax']; ?>		</p>
-                                    <a href="<?php echo $this->base ?>/agent_details/<?php echo $agent['Agent']['url']; ?>" class='gray-btn'>View full profile</a>
+                                    <?php if ($agent['Agent']['phone'] != ""): ?>
+                                        <p class="person-number">
+                                            <i class="fa fa-phone"></i> <?php echo __($agent['Agent']['phone']); ?>												
+                                        </p>
+                                    <?php endif; ?>
+                                    <?php if ($agent['Agent']['cell_phone'] != ""): ?>
+                                        <p class="person-email">
+                                            <i class="fa fa-mobile"></i> <?php echo __($agent['Agent']['cell_phone']); ?>												
+                                        </p>
+                                    <?php endif; ?>
+                                    <?php if ($agent['Agent']['email'] != ""): ?>
+                                        <p class="person-email">
+                                            <i class="fa fa-envelope"></i> <?php echo __($agent['Agent']['email']); ?>				
+                                        </p>
+                                    <?php endif; ?>
+                                    <?php if ($agent['Agent']['fax'] != ""): ?>
+                                        <p class="person-fax">
+                                            <i class="fa fa-print"></i> <?php echo __($agent['Agent']['fax']); ?>				
+                                        </p>
+                                    <?php endif; ?>
+                                    <a href="<?php echo $this->base ?>/agent_details/<?php echo $agent['Agent']['url']; ?>" class='gray-btn'><?php echo __("View full profile"); ?></a>
                                 </div>
                             </div>
 

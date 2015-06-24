@@ -13,6 +13,7 @@ class WebpagesController extends WebsiteAppController {
     public function index() {
         $this->set('banners', $this->Banner->find('all', array('conditions' => array("`Banner`.`status` = 1 and `Banner`.`language` = '{$this->Session->read('Config.language')}'"),
                     'fields' => array('`Banner`.*, `Property`.*, `Detail`.*'),
+                    'order' => array('Banner.position' => 'ASC'),
                     'joins' => array(array(
                             'alias' => 'Detail',
                             'table' => 'details',
